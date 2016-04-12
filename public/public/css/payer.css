@@ -1,0 +1,30 @@
+#payer {
+    padding: 20px;
+    border-left: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+}
+
+#payer h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+#payer .apps-rows {
+    margin-top: 20px;
+}
+
+#payer #payer-forms .container {
+    margin: 0;
+}
+
+.form-group label {
+    display: block;
+}
+
+#payer #description {
+    font-size: 12px;
+}
+
+#payer #description h5 {
+    font-weight: bold;
+}

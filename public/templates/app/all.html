@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../public/css/common.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../public/css/promotion.css"/>
+    <style>
+        table td {
+            padding-right: 30px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body style="padding:20px;">
+<header>
+    <h1>全部应用</h1>
+</header>
+<hr/>
+<table style="">
+    <tr>
+        <td>
+            <label for="">应用名：</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" placeholder="应用名">
+        </td>
+        <td>
+            <label for="">位置：</label>
+        </td>
+        <td>
+            <select class="form-control">
+                <option value="请选择专题位" selected="">请选择专题位</option>
+                <option value="默认-全部专题页">默认-全部专题页</option>
+                <option value="首页top1">首页top1</option>
+                <option value="首页top2">首页top2</option>
+                <option value="首页top3">首页top3</option>
+                <option value="首页top4">首页top4</option>
+                <option value="首页top5">首页top5</option>
+                <option value="首页middle1">首页middle1</option>
+                <option value="首页middle2">首页middle2</option>
+                <option value="首页middle3">首页middle3</option>
+                <option value="分类top1">分类top1</option>
+                <option value="分类top2">分类top2</option>
+            </select>
+        </td>
+        <td rowspan="2" style="width: 200px;vertical-align:middle;">
+            <button class="btn btn-default">查询</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">更新时间：</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" placeholder="更新时间">
+        </td>
+        <td>
+            <label for="">应用类别：</label>
+        </td>
+        <td>
+            <select class="form-control">
+                <option value="选择类型" selected="">选择类型</option>
+                <option value="默认类型1-一句话标签+列表">默认类型1-一句话标签+列表</option>
+                <option value="类型2-顶部大图+口号+列表">类型2-顶部大图+口号+列表</option>
+                <option value="类型3-应用大图带应用logo菜单列表">类型3-应用大图带应用logo菜单列表</option>
+                <option value="类型4-主应用带大图附加3个应用菜单列表">类型4-主应用带大图附加3个应用菜单列表</option>
+                <option value="类型5-分类带四个应用菜单列表">类型5-分类带四个应用菜单列表</option>
+            </select>
+        </td>
+</table>
+<br/>
+
+<div class="pull-right" style="padding-bottom: 10px;">
+    <button type="button" class="btn btn-default">上传应用</button>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <button type="button" class="btn btn-danger">删除</button>
+</div>
+<table id="table"
+       data-show-footer="true"
+       data-pagination="true"
+       data-page-size="10"
+       data-page-list="[10,20,30]"
+       data-pagination-first-text="First"
+       data-pagination-pre-text="Previous"
+       data-pagination-next-text="Next"
+       data-pagination-last-text="Last">
+    <thead>
+    <tr>
+        <th data-field="name" data-sortable="false">应用名</th>
+        <th data-field="update_time" data-sortable="false" data-editable="false">应用更新时间</th>
+        <th data-field="type" data-sortable="false" data-editable="false">应用类别</th>
+        <th data-field="size" data-sortable="false" data-editable="false">大小</th>
+        <th data-field="queue" data-sortable="false" data-editable="true">列表排序</th>
+        <th data-field="operate"
+            data-formatter="operateFormatter"
+            data-events="operateEvents">
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<!--alert model-->
+<div class="modal fade" id="delete-alert-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body">
+                <p>你确定删除应用<span style="color: red;" class="app-name"></span>吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="deleteApp()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--add model-->
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加应用</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group form-inline">
+                    <label for="app-id-or-name">应用名</label>
+                    <input style="width: 200px;" type="text" class="form-control" id="app-id-or-name"
+                           placeholder="输入应用ID或者名称">
+                    <button type="button" class="btn btn-danger">从数据库选择</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="deleteApp()">添加</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">放弃</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--detail model-->
+<div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="">&nbsp;</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <h4>基本信息</h4>
+                    <hr/>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用名称</label>
+
+                        <div class="col-sm-10">
+                            小生活
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用包名称</label>
+
+                        <div class="col-sm-10">
+                            CHFamily.apk
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用包类别</label>
+
+                        <div class="col-sm-10">
+                            <select class="form-control" style="width: 200px;" disabled>
+                                <option value="社交" selected>社交</option>
+                            </select>
+                            <select class="form-control" style="width: 200px;" disabled>
+                                <option value="关爱" selected>关爱</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">系统平台</label>
+
+                        <div class="col-sm-10">
+                            <select class="form-control" style="width: 200px;" disabled>
+                                <option value="android" selected>android</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">支持版本</label>
+
+                        <div class="col-sm-10">
+                            <select class="form-control" style="width: 200px;" disabled>
+                                <option value="android4.0以上" selected>android4.0以上</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用描述</label>
+
+                        <div class="col-sm-10">
+                            <textarea class="form-control" disabled placeholder="小生活是一款围绕家庭生活的关爱软件..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">最后一次更新</label>
+
+                        <div class="col-sm-10">
+                            2015/3/12 11:11:11
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">新版本说明</label>
+
+                        <div class="col-sm-10">
+                            <textarea class="form-control" disabled placeholder="小生活是一款围绕家庭生活的关爱软件..."></textarea>
+                        </div>
+                    </div>
+
+                    <h4>应用资源上传</h4>
+                    <hr/>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用包</label>
+
+                        <div class="col-sm-10">
+                            C://yingyong/xiaoshenghuo/myfamily.apk
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用logo</label>
+
+                        <div class="col-sm-10">
+                            <img src="../../public/img/logo.jpg" alt="..." class="img-rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">应用截图</label>
+
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-2">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="../../public/img/screen.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-2">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="../../public/img/screen.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-2">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="../../public/img/screen.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-2">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="../../public/img/screen.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-2">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="../../public/img/screen.jpg" alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">编辑应用</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../lib/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap_table/bootstrap-table.min.js"></script>
+<script src="../../lib/bootstrap_table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../public/js/all.js" type="text/javascript"></script>
+</body>
+</html>

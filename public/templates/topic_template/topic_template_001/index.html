@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>WebAPP</title>
+    <!--<link rel="icon" href="img/#">-->
+    <link rel="stylesheet" href="../../../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="topic_template.css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+    <![endif]-->
+    <script src="../../../lib/jquery.min.js"></script>
+    <script src="../../../lib/jquery.nicescroll.js"></script>
+    <script src="../../../lib/nicescroll.main.js"></script>
+    <script src="../../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        function appClickFunDownload(name) {
+            window.downloadclick.clickOnAndroid(name);
+        }
+        function appClickFunDetail(name) {
+            window.detailclick.clickOnAndroid(name);
+        }
+
+        function downloadCountToString(count){
+            if(count<9999){
+                return count+"次下载";
+            }else if(count>=9999&&count<99999999){
+                return count/10000+"万次下载";
+            }else {
+                return count/100000000+"亿次下载";
+            }
+        }
+        function pkgsizeToString(size){
+            return size/1048576.00+"M";
+        }
+        var columns="lazyapp_id,title,icon,t_downloadcount,totalstar"
+        $(function(){
+            var url=location.href
+            var urlParams=url.substring(url.indexOf('?')+1,url.length).split("&");
+            var appIds="1423649516891";
+            $.each(urlParams,function(index,element){
+                var kv=element.split('=')
+                if(kv.length == 2){
+                    var key=kv[0].trim()
+                    if(key=='icon'){
+                        var iconUrl="/element/img/"+kv[1];
+                        $("#icon").attr("src",iconUrl);
+                    }else if(key=='ids'){
+                        appIds=kv[1];
+                    }
+                }
+            })
+            console.log($('#icon'));
+            $('#icon').attr('src','222');
+            $.ajax({
+                url:"/template/apps",
+                dataType:"json",
+                type:"GET",
+                data:{"appIds":appIds,"columns":columns},
+                success:function(data){
+                    var buffer=""
+                    if(data.code==0) {
+                        $.each(data.jsonObj, function (index, element) {
+                            var icon=element.icon;
+                            icon = JSON.parse(icon)
+                            var id = "app" + index;
+                            var downloadAndSize='官网 '+pkgsizeToString(element.pkgsize)+'/'+downloadCountToString(element.t_downloadcount);
+                            var str = '<div class="col-xs-12 topMa">'
+                                    + '<a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload("' + element.title + '")" style="width: 50px;">下载</a>'
+                                    + '<div class="listBase listPanelActive" onclick="appClickFunDetail("' + element.title + '")">'
+                                    + '<div class="col-xs-3 listPaddingRe">'
+                                    + '<img class="iconRe" src="' + icon.px48 + '">'
+                                    + '</div>'
+                                    + '<div class="col-xs-6 paddingTestRe">'
+                                    + '<h1 id="ap01" class="iconTopic">' + element.title + '</h1>'
+                                    + '<img src="img/comm_star_fu.png">'
+                                    + '<img src="img/comm_star_fu.png" style="margin-left: -2px;">'
+                                    + '<img src="img/comm_star_fu.png" style="margin-left: -2px;">'
+                                    + '<img src="img/comm_star_em.png" style="margin-left: -2px;">'
+                                    + '<img src="img/comm_star_em.png" style="margin-left: -2px;">'
+                                    + '<p class="iconDes">' + downloadAndSize + '</p>'
+                                    + '</div>'
+                                    + '</div>'
+                                    + '</div>';
+                            buffer += str;
+                        })
+                        $appContainer = $("#container");
+                        $appContainer.html(buffer)
+                    }
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row topMa">
+            <div class="col-md-12">
+                <img class="imgRe" src="img/s_ad_001.png" id="icon">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row" id="container">
+
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap02')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap02')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_wx.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap02" class="iconTopic">微信</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">34.32M/8.6亿下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap03')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap03')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_qq.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap03" class="iconTopic">QQ</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">21.78M/23亿下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap04')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap04')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_zfb.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap04" class="iconTopic">支付宝</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">33.42M/1.1亿下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap05')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap05')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_wdj.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap05" class="iconTopic">豌豆荚</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">7.32M/4672万下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap06')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap06')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_bdtb.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap06" class="iconTopic">百度贴吧</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">20.41M/3379万下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 topMa">
+                <a class="btn btn-xs btn-danger aaa" onclick="appClickFunDownload('ap07')" style="width: 50px;">下载</a>
+                <div class="listBase listPanelActive" onclick="appClickFunDetail('ap07')">
+                    <div class="col-xs-3 listPaddingRe">
+                        <img class="iconRe" src="img/icon_xlwb.jpg">
+                    </div>
+                    <div class="col-xs-6 paddingTestRe">
+                        <h1 id="ap07" class="iconTopic">新浪微博</h1>
+                        <img src="img/comm_star_fu.png">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_fu.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <img src="img/comm_star_em.png" style="margin-left: -2px;">
+                        <p class="iconDes">36.01M/2.2亿下载</p>
+                    </div>
+                    <!--<div class="col-xs-3 listBtnPaddingTop">-->
+                    <!--<a href="#" class="btn btn-xs btn-danger" style="width: 50px;">下载</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../public/css/common.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap_select/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap-modal/css/bootstrap-modal.css"/>
+
+    <link rel="stylesheet" href="../../lib/bootstrap_datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../../public/css/common.css"/>
+    <link rel="stylesheet" href="../../public/css/promotion.css"/>
+    <link rel="stylesheet" href="../../lib/appChooser/css.css"/>
+
+    <style>
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #2F2F2F;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #2F2F2F;
+        }
+
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #2F2F2F;
+        }
+
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #2f2f2f;
+        }
+    </style>
+</head>
+<body id="promotion">
+
+<div class="col-md-12">
+    <h1 class="page-head-line">应用程序版本更新</h1>
+</div>
+
+<div class="col-md-12">
+    <form id="upload_apk_version_form" enctype="multipart/form-data" method="post" action="/admin/apk/version">
+        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+            <label class="col-md-1" style="padding-top: 6px; text-align: center;" >Apk名称:</label>
+            <input type="text"   id="title" name="title"  placeholder="" style="height: 30px; color: #2f2f2f;" value="虹商城"/>
+        </div>
+
+        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+            <label class="col-md-1" style="padding-top: 6px; text-align: center;" >Apk:</label>
+            <input type="file"   id="apk_file" name="apk_file"  placeholder="" style="height: 30px; color: #2f2f2f;"/>
+        </div>
+
+        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+            <label class="col-md-1" style="padding-top: 6px; text-align: center;" >内部版本号 :</label>
+            <textarea   class="col-md-6" id="publish_ver" name="internal_ver" placeholder="" style="height: 30px; color: #2f2f2f;">V2.1391 Beta</textarea>
+        </div>
+	<div class="form-group paddingRe" style="padding-bottom: 30px;">
+		            <label class="col-md-1" style="padding-top: 6px; text-align: center;" >发行版本号 :</label>
+			                <textarea   class="col-md-6" id="publish_ver" name="publish_ver" placeholder="" style="height: 30px; color: #2f2f2f;">V2.1391 Beta</textarea>
+					        </div>
+
+        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+            <label class="col-md-1" style="padding-top: 6px; text-align: center;" >更新内容 :</label>
+            <textarea  class="col-md-6" id="update_info" name="update_info" placeholder="" style="height: 166px; color: #2f2f2f;">商城是基于Android系统的免费资源共享平台，依托长虹智能化技术服务平台和实力雄厚的开发者群体，用户可以在虹商城上搜索、下载、管理、分享最贴心的移动应用，开发者可以在虹商城实现价值的最大化。虹商城由四川长虹通信科技有限公司（以下简称长虹通信）开发。计划预装在长虹各款智能手机上，旨在让长虹手机用户方便、快捷安装必备应用。虹商城提供海量应用，精彩游戏，精编专题，排行榜单、详细类别，智能查找等功能。编辑精选给用户做针对性的推荐，包括新应用的安装以及已安装应用的更新；懒人更新模式让用户更灵活的管理应用的更新；单独的数据管理模块，统计应用的耗电量、流量、占内存的情况，以及贴心的统计用户使用应用的频率，让用户随时知道手机上各款应用的参数情况，更加人性化。</textarea>
+        </div>
+        <div class="form-group" style="padding-bottom: 30px;">
+            <label class="col-md-1" style="padding-top: 6px; text-align: center;" id="edition"> </label>
+
+            <button type="submit" class="btn btn-danger">
+                上传确认
+            </button>
+        </div>
+    </form>
+
+
+</div>
+
+<div class="col-md-12" style="width: 100%; height: 20px;"></div>
+<div class="col-md-12" style="padding-left: 0;">
+</div>
+
+
+
+<script src="../../lib/jquery.min.js"></script>
+<script src="../../lib/jquery.nicescroll.js"></script>
+<script src="../../lib/nicescroll.main.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap_table/bootstrap-table.min.js"></script>
+<script src="../../lib/bootstrap_table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../lib/bootstrap_select/js/bootstrap-select.min.js"></script>
+<script src="../../lib/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../lib/bootstrap-modal/js/bootstrap-modal.js"></script>
+<script src="../../lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+<script src="../../lib/appChooser/js.js" type="text/javascript"></script>
+<script src="../../public/js/promotion.js" type="text/javascript"></script>
+</body>
+</html>

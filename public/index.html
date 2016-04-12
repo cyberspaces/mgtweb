@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="lib/ZTree/zTreeStyle/zTreeStyle.css"/>
+    <link rel="stylesheet" href="public/css/common.css"/>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/ZTree/jquery.ztree.core-3.5.min.js"></script>
+    <script src="lib/jquery.cookie.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            font-family: "微软雅黑";
+        }
+
+        #header {
+            height: 70px;
+            width: 100%;
+            background-color: #db5656;
+            box-shadow: 0 1px 1px #b1b1b1;
+        }
+
+        #logo {
+            /*background-color: #ffffff;*/
+            float: left;
+            margin: 12px 15px 15px 60px;
+        }
+
+        #sys-name {
+            height: 100%;
+            font: 18px  "微软雅黑";
+            line-height: 60px;
+            color: #FFFFFF;
+            float: left;
+            padding: 8px 0 0 30px;
+        }
+
+        #user {
+            position: absolute;
+            right: 50px;
+            top: 40px;
+            height: 30px;
+            width: 150px;
+            line-height: 30px;
+            background-color: #9f3f3f;
+            color: #ffffff;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            padding: 0;
+            z-index: 99;
+        }
+
+        #user li {
+            line-height: 30px;
+            height: 30px;
+            background-color: #9f3f3f;
+            color: #FFFFFF;
+        }
+
+        #menu-bar {
+            width: 200px;
+            position: absolute;
+            top: 105px;
+            bottom: 0;
+            left: 0;
+            border-right: solid 1px #e2e2e2;
+        }
+
+        #frame {
+            position: absolute;
+            top: 105px;
+            bottom: 0;
+            left: 204px;
+            right: 0;
+            overflow: hidden;
+        }
+
+        #menu-bar-title {
+            height: 60px;
+            /*font-weight: bold;*/
+            color: #333;
+            font-size: 20px;
+            text-align: center;
+            line-height: 60px;
+            border-bottom: solid 1px #e2e2e2;
+            margin: 10px 2px 0 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="logo">
+        <img style="height: 70px; width: 70px;" src="public/img/icon_temp.png">
+    </div>
+    <div id="sys-name">
+        应用商店后台管理系统
+    </div>
+</div>
+<ul id="user">
+    <div id="username"></div>
+    <li>修改密码</li>
+    <li onclick="logout();">退出</li>
+</ul>
+<div id="menu-bar">
+    <div id="menu-bar-title">
+        操作
+    </div>
+    <div style="width: 100%; height: 20px;"></div>
+    <div id="menu-bar-menus" class="ztree">
+
+    </div>
+</div>
+<div id="frame">
+    <iframe id="frame-body" style="height: 100%;width: 100%;" frameborder="0"></iframe>
+</div>
+<script>
+    var currentPage;
+    var user = $('#user');
+    var frameBody = $('#frame-body');
+    user.hover(function () {
+        user.height('auto');
+    }, function (e) {
+        user.height(30);
+    });
+
+    user.find('li').hover(function () {
+        $(this).css({
+            color: '#D3D3D3',
+            backgroundColor: '#bf4c4c'
+        });
+    }, function () {
+        $(this).css({
+            color: '',
+            backgroundColor: ''
+        });
+    });
+
+    /**
+     * tree event
+     */
+    var treeNodeClick = function (event, treeId, treeNode) {
+        if (treeNode.href) {
+            if (currentPage == treeNode.href)return;
+            frameBody.attr('src', treeNode.href);
+            currentPage = treeNode.href;
+        }
+        else {
+            var firstChild = treeNode.children[0];
+            treeObj.selectNode(firstChild);
+            if (currentPage == firstChild.href)return;
+            frameBody.attr('src', firstChild.href);
+            currentPage = firstChild.href;
+        }
+    }
+
+    /**
+     *  侧边栏树
+     */
+    var nodes = [
+        {name: '账号管理', href: './templates/account/account.html'},
+        {name: '运营管理', children: [
+            {name: '管理专题', href: './templates/operation/subjects.html'},
+            {name: '管理首发', href: './templates/operation/firstRelease.html'},
+            {name: '管理付费', href: './templates/operation/payer.html'},
+            {name: '管理应用', children: [
+                {name: '推广应用', href: './templates/app/promotion.html'},
+                {name: '全部应用', href: './templates/app/all.html'},
+                {name: '上传应用', href: './templates/app/uploadapp.html'},
+                {name: '虹商城应用更新',href:'./templates/app/upload.html'}
+            ]}
+        ]}
+    ];
+
+    var setting = {
+        view: {
+            showIcon: false,
+            showLine: false,
+            selectedMulti: false,
+            fontCss: {fontSize: 16}
+        },
+        callback: {
+            onClick: treeNodeClick
+        }
+    }
+
+    $.fn.zTree.init($('#menu-bar-menus'), setting, nodes);
+    var treeObj = $.fn.zTree.getZTreeObj('menu-bar-menus');
+    treeObj.expandAll(true);
+
+    var url=location.href
+    var name=url.substring(url.indexOf('?')+1,url.length).split('=')[1];
+    $("#username").html(name);
+
+    function logout(){
+        $.ajax({
+            type:'delete',
+            url:'/admin/logout',
+            success:function(){
+                window.location.href = '/assets/login.html';
+            },
+            complete:function(){
+                window.location.href = '/assets/login.html';
+            }
+        });
+    }
+</script>
+</body>
+</html>

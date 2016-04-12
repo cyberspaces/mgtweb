@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../public/css/common.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap_select/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="../../lib/bootstrap-modal/css/bootstrap-modal.css"/>
+
+    <link rel="stylesheet" href="../../lib/bootstrap_datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../../public/css/common.css"/>
+    <link rel="stylesheet" href="../../public/css/uploadapp.css"/>
+    <link rel="stylesheet" href="../../lib/appChooser/css.css"/>
+    <link rel="stylesheet" href="../../lib/uploadify/uploadify.css">
+
+
+
+    <style>
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 12px;
+        }
+    </style>
+
+
+
+</head>
+<form id="form-upload-app" style="padding-left: 15px;">
+
+<div class="col-md-12" style="margin-top: -40px; ">
+    <h1 class="page-head-line">上传应用</h1>
+</div>
+
+
+
+<!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
+<!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
+<!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
+<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;padding-left: 30px;">应用包上传</label>
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;" id="abc">上传APK:</label>
+
+        <div class="col-md-5">
+            <input type="text" class="form-control" name="downloadurls" placeholder="http://ABC/sth/……">
+        </div>
+
+        <div class="col-md-3">
+            <input type="file" id="app-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;" id="">应用包名:</label>
+
+        <div class="col-md-5">
+            <input id="package_id" type="text" name="packagename" class="form-control" placeholder="com.changhong.lazysotre">
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用包大小:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="pkgsize" class="form-control" placeholder="11.6">
+        </div>
+
+        <label class="col-md-1" style="padding-top: 6px; text-align: left;" >MB</label>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">发行版本号:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="versioncode" class="form-control" placeholder="1.8.0.1">
+        </div>
+
+    </div>
+</div>
+
+
+<div class="col-md-12" style="width: 100%; height: 30px; border-bottom: 1px solid #eee; margin-bottom: 30px;"></div>
+
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;" >最大适配版本:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="maxsdkversion" class="form-control" placeholder="4.3.2">
+            <input type="hidden" name="devcode"/>
+        </div>
+
+        <!--<label class="col-md-3" style="padding-top: 6px; text-align: left; color: #db5656;" >版本数据格式: 4.0.1或者2.3</label>-->
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;" >最小适配版本:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="minsdkversion" class="form-control" placeholder="4.0.1">
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发版本:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="targetsdkversion" class="form-control" placeholder="4.0.1">
+        </div>
+
+    </div>
+</div>
+
+
+<div class="col-md-12" style="width: 100%; height: 30px; border-bottom: 1px solid #eee; margin-bottom: 30px;"></div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">审核包使用权限:</label>
+
+        <div class="col-md-5">
+        <textarea name="permissionstatement"  placeholder="拨打电话权限，访问通话记录：方便用户通过App，一键拨号，联系经纪人，沟通买房。
+接收短信:方便接受验证码等信息读取联系人权限：产品中有用户评价功能，为了验证评价的真实有效，读取联系人中的通话记录"
+                  style="height: 80px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+
+        <!--<label class="col-md-3" style="padding-top: 6px; text-align: left; color: #db5656;" >手动填写,文字内容</label>-->
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">危险使用权限:</label>
+
+        <div class="col-md-5">
+        <textarea name="dangerouspermissions" placeholder="发送短信;拨打电话;接收短信;访问联系人数据;读取短信或彩信;访问通话记录"
+                   style="height: 36px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+        <!--<label class="col-md-3" style="padding-top: 6px; text-align: left; color: #db5656;" >自动解析权限，不能自动解析时手动填写，空格隔开</label>-->
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">包是否安全:</label>
+
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>安全</option>
+                <option>危险</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+<!-----------------------------------------------------应用信息（填写） 模块-------------------------------------------------->
+<!-----------------------------------------------------应用信息（填写） 模块-------------------------------------------------->
+<!-----------------------------------------------------应用信息（填写） 模块-------------------------------------------------->
+
+
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 10px;"></div>
+<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;padding-left: 30px;">应用信息（填写）</label>
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用名称:</label>
+
+        <div class="col-md-3">
+            <input name="title" type="text" class="form-control" placeholder="请填写应用名">
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用图标:</label>
+        <div class="col-md-11">
+            <input type="file" id="app-icon" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+        </div>
+        <div class="viewIcon view-sixth" style="display: inline-block; position: relative; height: 150px; width: 150px; background-color: #e8e7e8; ">
+            <input type="hidden" name="icon" />
+            <img src="../../public/img/icon_temp.png" style="height: 100%;width: 100%;">
+            <div class="mask">
+                <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用截图:</label>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="file" id="app-screenshot-file-1" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                </div>
+                <div class="col-md-2">
+                    <input type="file" id="app-screenshot-file-2" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                </div>
+                <div class="col-md-2">
+                    <input type="file" id="app-screenshot-file-3" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                </div>
+                <div class="col-md-2">
+                    <input type="file" id="app-screenshot-file-4" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                </div>
+                <div class="col-md-2">
+                    <input type="file" id="app-screenshot-file-5" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                </div>
+            </div>
+            <!--<input type="file" id="app-screenshot-file-2" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">-->
+            <!--<input type="file" id="app-screenshot-file-3" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">-->
+            <!--<input type="file" id="app-screenshot-file-4" class="app-screenshot-file" name="new_topic_img" value="上传本地图片" style="display: inline-block;">-->
+            <!--<input type="file" id="app-screenshot-file-5" class="app-screenshot-file" name="new_topic_img" value="上传本地图片">-->
+        </div>
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+        <!--------------------------图片上传之后append的<img>标签 ------------------------>
+        <!--------------------------onclick 作为图片删除事件 -------------------------->
+
+
+        <div class="col-md-11" style="padding: 20px;">
+
+            <div class="view view-sixth app-screenshot" style="display: inline-block; position: relative; ">
+                <img src="../../public/img/screen.jpg" style="height: 200px; width: 112px;">
+                <div class="mask">
+                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                </div>
+                <div class="uploadify-template"><span class="data"></span></div>
+            </div>
+
+            <div class="view view-sixth app-screenshot" style="display: inline-block; position: relative; ">
+                <img src="../../public/img/screen.jpg" style="height: 200px; width: 112px;">
+                <div class="mask">
+                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                </div>
+                <div class="uploadify-template"><span class="data"></span></div>
+            </div>
+
+            <div class="view view-sixth app-screenshot" style="display: inline-block; position: relative; ">
+                <img src="../../public/img/screen.jpg" style="height: 200px; width: 112px;">
+                <div class="mask">
+                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                </div>
+                <div class="uploadify-template"><span class="data"></span></div>
+            </div>
+
+            <div class="view view-sixth app-screenshot" style="display: inline-block; position: relative; ">
+                <img src="../../public/img/screen.jpg" style="height: 200px; width: 112px;">
+                <div class="mask">
+                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                </div>
+                <div class="uploadify-template"><span class="data"></span></div>
+            </div>
+
+            <div class="view view-sixth app-screenshot" style="display: inline-block; position: relative; ">
+                <img src="../../public/img/screen.jpg" style="height: 200px; width: 112px;">
+                <div class="mask">
+                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                </div>
+                <div class="uploadify-template"><span class="data"></span></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用类别:</label>
+
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>游戏</option>
+                <option>应用</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>金融</option>
+                <option>理财</option>
+                <option>呵呵</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用标签:</label>
+
+        <div class="col-md-3">
+            <input type="text" name="tags" class="form-control" placeholder="位置 安全 导航 旅游">
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">一句话简介:</label>
+
+        <div class="col-md-5">
+        <textarea name="l_described"  placeholder="20字以内"
+                   style="height: 36px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">应用介绍:</label>
+
+        <div class="col-md-5">
+        <textarea name="described"  placeholder="1000字以内"
+                   style="height: 100px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">更新说明:</label>
+
+        <div class="col-md-5">
+        <textarea  name="changelogs" placeholder="500字以内"
+                   style="height: 80px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+    </div>
+</div>
+
+
+
+<!-----------------------------------------------------开发者信息 模块-------------------------------------------------->
+<!-----------------------------------------------------开发者信息 模块-------------------------------------------------->
+<!-----------------------------------------------------开发者信息 模块-------------------------------------------------->
+
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 10px;"></div>
+<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;padding-left: 30px;">开发者信息</label>
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
+
+
+<div class="col-md-12" style="width: 100%; height: 30px; border-bottom: 1px solid #eee; margin-bottom: 30px;"></div>
+
+
+<div class="col-md-12">
+
+
+    <!-----------------------------------------------------企业帐号 模块-------------------------------------------------->
+    <!-----------------------------------------------------企业帐号 模块-------------------------------------------------->
+    <!-----------------------------------------------------企业帐号 模块-------------------------------------------------->
+
+
+    <div role="tabpanel">
+
+            <!--&lt;!&ndash; Nav tabs &ndash;&gt;-->
+            <ul class="nav nav-tabs" role="tablist" style="display: none;" id="myTabs">
+                <li role="presentation" class="active"><a href="#enterprise" aria-controls="enterprise" role="tab" data-toggle="tab">Enterprise</a></li>
+                <li role="presentation"><a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Individual</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <div role="tabpanel" class="tab-pane active" id="enterprise">
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发者注册账号:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="email" class="form-control" placeholder="开发者邮箱地址">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发者公司名称:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="company" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发者公司简称:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="c_described" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发者网址:</label>
+
+                            <div class="col-md-5">
+                                <input type="text" name="website" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">公司地址:</label>
+
+
+                            <div class="col-md-3" id="city_ent">
+                                <select class="prov form-control" style="margin-bottom: 30px;"></select>
+                                <select class="city form-control" disabled="disabled" style="margin-bottom: 10px;"></select>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+                            <div class="col-md-5">
+                                <textarea   placeholder="填写详细信息：街道 号" style="height: 100px; width: 100%; color: #2f2f2f;"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">开发者公司绍:</label>
+
+                            <div class="col-md-5">
+                                <textarea   placeholder="100字以内" style="height: 100px; width: 100%; color: #2f2f2f;"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12" style="width: 100%; height: 30px; border-bottom: 1px solid #eee; margin-bottom: 30px;"></div>
+
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">业务联系人姓名:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="b_name" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">业务联系人手机:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="b_phone" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">业务联系人邮箱:</label>
+
+                            <div class="col-md-5">
+                                <input type="text" name="b_email" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">业务联系人QQ:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="b_qq" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">身份验证结果:</label>
+
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>合法</option>
+                                    <option>待定</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">企业执照编号:</label>
+
+                            <div class="col-md-3">
+                                <input type="text" name="b_licence" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 0;">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;">身份认证资料:</label>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!--------------------------图片上传之后append的<img>标签 ------------------------>
+                    <!--------------------------图片上传之后append的<img>标签 ------------------------>
+                    <!--------------------------图片上传之后append的<img>标签 ------------------------>
+
+
+                    <div class="col-md-3" >
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+                            <div class="col-md-12">
+                                <input type="file" id="app-Enterprise_A" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                            </div>
+
+                            <div class="viewEnt view-sixth" style="text-align: center; display: inline-block; position: relative; height: 200px; width: 300px; background-color: #e8e7e8;">
+                                <input type="hidden" name="o_id" />
+                                <img src="../../public/img/screen.jpg" style=" height: 100%; ">
+                                <div class="mask">
+                                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3" >
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+                            <div class="col-md-12">
+                                <input type="file" id="app-Enterprise_B" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                            </div>
+
+                            <div class="viewEnt view-sixth" style="text-align: center; display: inline-block; position: relative; height: 200px; width: 300px; background-color: #e8e7e8;">
+                                <input type="hidden" name="t_id" />
+                                <img src="../../public/img/screen.jpg" style=" height: 100%; ">
+                                <div class="mask">
+                                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+                            <div class="col-md-12">
+                                <input type="file" id="app-Enterprise_C" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                            </div>
+
+                            <div class="viewEnt view-sixth" style="text-align: center; display: inline-block; position: relative; height: 200px; width: 300px; background-color: #e8e7e8;">
+                                <input type="hidden" name="c_id" />
+                                <img src="../../public/img/screen.jpg" style=" height: 100%; ">
+                                <div class="mask">
+                                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3" >
+                        <div class="form-group paddingRe" style="padding-bottom: 30px;">
+                            <label class="col-md-1" style="padding-top: 6px; text-align: center;"></label>
+
+                            <div class="col-md-12">
+                                <input type="file" id="app-Enterprise_D" name="new_topic_img" value="上传本地图片" style="display: inline-block;">
+                            </div>
+
+                            <div class="viewEnt view-sixth" style="text-align: center; display: inline-block; position: relative; height: 200px; width: 300px; background-color: #e8e7e8;">
+                                <input type="hidden" name="b_id" />
+                                <img src="../../public/img/screen.jpg" style=" height: 100%; ">
+                                <div class="mask">
+                                    <a class="btn  btn-danger " onclick="" style="width: 100%; top: 100px;">删除图片</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                 </div>
+                </div>
+        </div>
+
+
+
+<!-----------------------------------------------------审核信息 模块-------------------------------------------------->
+<!-----------------------------------------------------审核信息 模块-------------------------------------------------->
+<!-----------------------------------------------------审核信息 模块-------------------------------------------------->
+
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 10px;"></div>
+<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;padding-left: 30px;">审核信息</label>
+<div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe" style="padding-bottom: 30px;">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">审核信息:</label>
+        <div class="col-md-5">
+        <textarea name="adminmsg"  placeholder="审核员填写，对应用的审核意见以及结果等" style="height: 36px; width: 100%; color: #2f2f2f;"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" style="width: 100%; height: 30px; border-bottom: 1px solid #eee; margin-bottom: 30px;"></div>
+</form>
+
+
+<div style="margin: 50px 0;">
+
+    <!--上传代码例子-->
+    <!--<a href="javascript:$('#???').uploadify('upload')">上传</a>-->
+
+    <a type="button" class="btn btn-danger" style="margin-left: 50px;" data-toggle="" data-target="" onclick="submit(this)">提交</a>
+    <a type="button" class="btn btn-default" style="margin-left: 10px;" data-toggle="" data-target="" onclick="">取消 </a>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="../../lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/cityselect/jquery.cityselect.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#city_ent").citySelect({
+            prov:"四川",
+            city:"成都"
+        });
+        $("#city_indv").citySelect({
+            prov:"四川",
+            city:"成都"
+        });
+        
+
+    });
+</script>
+
+<script src="../../lib/jquery.form.min.js"></script>
+<script src="../../lib/uploadify/jquery.uploadify.min.js"></script>
+
+<!--<script src="../../lib/jquery.nicescroll.js"></script>-->
+<!--<script src="../../lib/nicescroll.main.js"></script>-->
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap_table/bootstrap-table.min.js"></script>
+<script src="../../lib/bootstrap_table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../lib/bootstrap_select/js/bootstrap-select.min.js"></script>
+<script src="../../lib/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../lib/bootstrap-modal/js/bootstrap-modal.js"></script>
+<script src="../../lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+<script src="../../lib/appChooser/js.js" type="text/javascript"></script>
+<script src="../../public/js/uploadapp.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap_table/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap_select/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap_datepicker/css/bootstrap-datetimepicker.min.css" />
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/moments/moment-with-locales.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap_table/bootstrap-table.min.js"></script>
+    <script src="lib/bootstrap_select/js/bootstrap-select.min.js"></script>
+    <script src="lib/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="lib/jquery.form.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <table id="testTable"
+               data-toggle="table"
+               data-url="/testbootstraptable"
+               data-side-pagination="server"
+               data-pagination="true"
+               data-page-list="[5, 10, 20, 50, 100, 200]"
+               data-search="true"
+               data-query-params="paramsEncoder"
+               data-response-handler="responseHandler">
+            <thead>
+             <th data-field="id" class="col-md-2">id</th>
+             <th data-field="price" class="col-md-6">price</th>
+             <th data-field="name" class="col-md-4">name</th>
+            </thead>
+        </table>
+        <script>
+            var start=0;
+            var total=0;
+            function paramsEncoder(params){
+                params.username="hadoop";
+                params.job="engineer";
+                return params;
+            }
+            function responseHandler(data){
+                start=data.start;
+                total=data.total;
+              return data;
+            }
+        </script>
+        <!--<script>-->
+            <!--var $table=$("testTable")-->
+            <!--$(function(){-->
+                <!--$.ajax({-->
+                    <!--url:"/testbootstraptable",-->
+                    <!--type:"get",-->
+                    <!--dataType:"json",-->
+                    <!--success:function(resp){-->
+                        <!--$table.bootstrapTable({data:resp});-->
+                    <!--},-->
+                    <!--error:function(error){-->
+                        <!--alert("error->"+error)-->
+                    <!--}-->
+                <!--})-->
+            <!--})-->
+        <!--</script>-->
+    </div>
+    <div class="container">
+        <form id="formid" action="http://10.9.52.31:8083/fileupload" enctype="multipart/form-data" method="post">
+            <input type="file" name="pic">
+            <input type="text" name="test_txt"/>
+            <button id="submit_btn" type="submit" value="submit">submit</button>
+            <button id="submit_btn1" type="submit" value="submit" onclick="changeTarget('/file/upload1','#formid')">submit1</button>
+        </form>
+    </div>
+    <script>
+        $newTopicForm=$("#formid");
+        $(function(){
+            $newTopicForm.ajaxForm({
+                success:function(data,status,t){
+                    alert("success"+data.code+","+status+","+t)
+                },
+                dataType:"json",
+                error:function(error,status,x){
+                    alert("error->"+error+","+status+","+x)
+                }
+            })
+            $.ajax({
+                url:"http://10.9.52.31:8083/jsonpdemo",
+                dataType:"jsonp",
+                success:function(data){
+                    alert(JSON.stringify(data));
+                },
+                error:function(jqXHR,textStatus,errorThrown){
+                    alert("error->"+jqXHR+","+textStatus+","+errorThrown)
+                }
+            });
+
+            var url = "https://status.github.com/api/status.json?callback=apiStatus";
+            $.ajax({
+                url: url,
+                dataType: 'jsonp',
+                jsonpCallback: 'apiStatus',
+                success: function (response) {
+                    alert('callback success: '+response);
+                },
+                error: function (xhr, status, error) {
+                    alert(status + '; ' + error);
+                }
+            });
+        })
+        function changeTarget(url,formid){
+            alert("action->"+url);
+            $(formid).attr("action",url);
+        }
+    </script>
+</body>
+</html>

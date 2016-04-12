@@ -1,0 +1,74 @@
+/* */
+body{
+    background-color: #ececec;
+}
+
+/* WEB APP */
+.topMa {
+    margin-top: 10px;
+}
+
+.paddingTestRe {
+    padding: 16px 0 0 10px;
+}
+
+.listPaddingRe {
+    padding: 10px 0 10px 10px;
+}
+
+.listPaddingRe .iconRe {
+    height: 66px;
+    width: 66px;
+}
+
+.paddingTestRe .iconTopic {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+    padding: 0 0 0 0;
+}
+
+.paddingTestRe .iconDes {
+    font-size: 12px;
+    margin: 0;
+    padding: 4px 0 0 0;
+}
+
+.imgRe {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 1px 3px #595959;
+}
+
+.listBase {
+    height: 86px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px #949494;
+}
+
+.listBtnPaddingTop {
+    padding-top: 34px;
+}
+
+.listPanelActive:active {
+    background-color: #ececec;
+}
+
+.listBtnPaddingTop .btn-danger:active {
+    background-color: #ececec;
+    border-color: #ececec;
+    color: #000000;
+}
+
+.btn-danger:active {
+    background-color: #ececec;
+    border-color: #ececec;
+    color: #000000;
+}
+
+.aaa {
+    position: absolute;
+    top: 30px;
+    right: 46px;
+}

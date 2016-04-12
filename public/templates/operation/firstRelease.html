@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_select/css/bootstrap-select.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_datepicker/css/bootstrap-datetimepicker.min.css" />
+
+
+    <link rel="stylesheet" href="../../public/css/common.css" />
+    <link rel="stylesheet" href="../../public/css/firstRelease.css" />
+
+
+</head>
+<body id="firstRelease">
+    <header style="padding: 0 0 20px 0;">
+        <h1>管理首发</h1>
+    </header>
+
+    <hr />
+
+    <section id="firstRelease-forms" style="padding: 20px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="padding: 0;">
+                    <div class="form-group">
+                        <label class="col-md-3" style="padding:0;">应用名:</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="请输入应用名称" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-3" style="padding:0;">当前状态:</label>
+                        <div class="col-md-9">
+                            <select class="form-control">
+                                <option>请选择当前状态</option>
+                                <option>未审核</option>
+                                <option>审核中</option>
+                                <option>审核通过</option>
+                                <option>审核未通过</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row apps-rows">
+                <div class="col-md-6" style="padding: 0;">
+                    <div class="form-group">
+                        <label class="col-md-3" style="padding:0;">首发时间:</label>
+                        <div class="col-md-9">
+                            <input type='text' placeholder="请选择日期" class="form-control" id='datetimepicker' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row apps-rows">
+                <button type="button" class="btn btn-default">查询</button>
+                <button type="button" class="btn btn-default">查看所有主题</button>
+            </div>
+        </div>
+    </section>
+
+    <hr />
+
+    <section id="subjects-table" style="padding: 20px 0 0;">
+        <table id="table"
+               data-pagination="true"
+               data-page-size="5"
+               data-page-list="[5,8,10]"
+               data-pagination-first-text="First"
+               data-pagination-pre-text="Previous"
+               data-pagination-next-text="Next"
+               data-pagination-last-text="Last">
+            <thead>
+            <tr>
+                <th data-field="title" data-sortable="false">应用名称</th>
+                <th data-field="apply_time" data-sortable="false" data-editable="false">申请时间</th>
+                <th data-field="applicant" data-sortable="false" data-editable="false">申请人</th>
+                <th data-field="type" data-sortable="false" data-editable="false">首发形式</th>
+                <th data-field="release_time" data-sortable="false" data-editable="false">首发时间</th>
+                <th data-field="state" data-sortable="false" data-editable="false">状态</th>
+                <th data-field="operate"
+                    data-formatter="operateFormatter"
+
+                    data-events="operateEvents">操作</th>
+            </tr>
+            </thead>
+        </table>
+    </section>
+
+    <hr/>
+
+    <section id="description" style="padding: 20px 0 0;">
+        <h5>开发者申请首发的具体流程</h5>
+        <p>1.开发者通过开发者平台，申请首发推广，根据首发申请的相关规定与要求，开发者提供首发所需要提供的所有资料供审核。</p>
+        <p>2.开发者提供的所有信息，运维管理系统从数据库读取进入首发列表。人工审核，审核结果为通过和不通过两种状态，不通过的补充不通过原因，通过开发者平台反馈给开发者。</p>
+
+        <br />
+        <h5>首发推广具体运营方式</h5>
+        <p>各个首发具体资源位具体细则</p>
+    </section>
+
+
+<script src="../../lib/jquery.min.js"></script>
+<script src="../../lib/moments/moment-with-locales.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap_table/bootstrap-table.min.js"></script>
+
+<script src="../../lib/bootstrap_table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../lib/bootstrap_select/js/bootstrap-select.min.js"></script>
+
+
+
+<script src="../../lib/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../public/js/firstRelease.js" type="text/javascript"></script>
+
+
+    <!-- update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">更新状态</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group clear">
+                            <label class="col-md-4" for="updateResult">人工审核结果:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="updateResult">
+                                    <option>审核中</option>
+                                    <option>审核通过</option>
+                                    <option>审核未通过</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group clear">
+                            <label class="col-md-4" for="subjectDesc">不通过原因:</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="subjectDesc" placeholder="请输入不通过原因"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group clear">
+                            <label class="col-md-4" for="updateShort">快捷原因选择:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="updateShort">
+                                    <option>启动不能进入主页</option>
+                                    <option>存在恶意内容</option>
+                                    <option>内容不符合规范</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">放弃</button>
+                    <button type="button" class="btn btn-primary">完成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- showReason Modal -->
+    <div class="modal fade" id="showReasonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">原因查看</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group clear">
+                            <label class="col-md-4" for="showReasonResult">人工审核结果:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="showReasonResult">
+                            </div>
+                        </div>
+
+                        <div class="form-group clear">
+                            <label class="col-md-4" for="showReasonDesc">不通过原因:</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="showReasonDesc"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭页面</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">首发任务已过期，是否从列表中删除？</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="checkbox">
+                            <span>列表自动删除已过期的任务</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">暂不删</button>
+                    <button type="button" class="btn btn-primary">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

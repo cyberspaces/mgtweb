@@ -1,0 +1,30 @@
+#firstRelease {
+    padding: 20px;
+    border-left: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+}
+
+#firstRelease h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+#firstRelease .apps-rows {
+    margin-top: 20px;
+}
+
+#firstRelease #firstRelease-forms .container {
+    margin: 0;
+}
+
+.form-group label {
+    display: block;
+}
+
+#firstRelease #description {
+    font-size: 12px;
+}
+
+#firstRelease #description h5 {
+    font-weight: bold;
+}

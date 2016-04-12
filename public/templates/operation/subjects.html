@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_select/css/bootstrap-select.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap_datepicker/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="../../lib/bootstrap-modal/css/bootstrap-modal.css"/>
+    <link rel="stylesheet" href="../../lib/appChooser/css.css"/>
+
+    <link rel="stylesheet" href="../../public/css/common.css" />
+    <link rel="stylesheet" href="../../public/css/subjects.css" />
+
+
+    <script src="../../lib/jquery.min.js"></script>
+    <!--<script src="../../lib/jquery.nicescroll.js"></script>-->
+    <!--<script src="../../lib/nicescroll.main.js"></script>-->
+    <script src="../../lib/moments/moment-with-locales.min.js"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../lib/bootstrap_table/bootstrap-table.min.js"></script>
+    <script src="../../lib/bootstrap_table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../lib/bootstrap_select/js/bootstrap-select.min.js"></script>
+
+
+
+    <script src="../../lib/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../lib/jquery.form.min.js"></script>
+    <script src="../../lib/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="../../lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+    <script src="../../lib/appChooser/js.js" type="text/javascript"></script>
+    <script src="../../public/js/subjects.js" type="text/javascript"></script>
+
+</head>
+<body id="subjects">
+
+
+<div class="col-md-12">
+    <h1 class="page-head-line">管理专题</h1>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group paddingRe">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">专题位置:</label>
+        <div class="col-md-3">
+            <select id="topic_position_select" class="form-control position">
+
+            </select>
+        </div>
+        <!--<a href="#" class="btn btn-primary-Re"></a>-->
+        <!--<a href="#" class="cl-effect" data-hover="确定"><span>新增专题位</span></a>-->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addModal">新增专题位</button>
+
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-11" style="font-size: 14px; color: #b8b8b8;">
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="Top01">
+                <p>您正在查看  <span style="color: #F0677C;">首页top1专题位</span>  的内容，您可以编辑此专题位不同时间将要展示的专题！</p>
+            </div>
+            <div class="tab-pane fade" id="Top02">
+                <p>您正在查看  首页top2专题位  的内容，您可以编辑此专题位不同时间将要展示的专题！</p>
+            </div>
+            <div class="tab-pane fade" id="Top03">
+                <p>您正在查看  首页top3专题位  的内容，您可以编辑此专题位不同时间将要展示的专题！</p>
+            </div>
+            <div class="tab-pane fade" id="Top04">
+                <p>您正在查看  首页top4专题位  的内容，您可以编辑此专题位不同时间将要展示的专题！</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" style="width: 100%; height: 10px;"></div>
+<div class="col-md-12">
+    <div class="form-group clear paddingRe">
+        <label class="col-md-1" style="padding-top: 6px; text-align: center;">专题模板:</label>
+        <div class="col-md-3">
+            <select id="topic_template_select" class="form-control template">
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group ">
+        <label class="col-md-1" style="padding: 0; padding-top: 6px; text-align: center;">有效期：</label>
+        <div class="col-md-3">
+            <input type='text' class="form-control" id='datetimepicker' />
+        </div>
+
+        <label class="col-md-1" style="padding: 0; padding-top: 6px; text-align: center;">至</label>
+        <div class="col-md-3">
+            <input type='text' class="form-control" id='datetimepicker02' />
+        </div>
+        <div class="col-md-1">
+            <div class="col-md-1" style="text-align: center;">
+                <button type="button" id="search_btn" class="btn btn-danger">查询</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--<div class="col-md-12" style="padding-top: 20px; padding-bottom: 0;">-->
+
+
+    <!--<div class="col-md-1" style="text-align: center;">-->
+        <!--<button type="button" class="btn btn-danger">查看所有主题</button>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="col-md-12">
+    <section id="subjects-table">
+        <div style="height: 40px;"></div>
+        <div style="margin: 0 0 10px 0; text-align: right; bottom: 0;">
+            <div style="position: absolute; left: 20px; height: 34px; margin-top: 10px;">
+                <label>
+                    <input id="hasHistory" type="checkbox" value="">
+                    显示全部，包括已过期
+                </label>
+            </div>
+
+
+            <!--<button type="button" class="btn btn-default " data-toggle="modal" data-target="#">删除</button>-->
+            <button type="button" class="btn btn-danger" data-toggle="modal" onclick="addPromotion()">添加推广</button>
+            <!--<a  data-toggle="modal" class="btn btn-info" href="#myModaltemplate001">Launch demo modal</a>-->
+
+
+        </div>
+
+        <table
+                id="table"
+                data-toggle="table"
+                data-url="/topic/contents"
+                data-side-pagination="server"
+
+                data-pagination="true"
+                data-page-size="5"
+                data-page-list="[5,10]"
+                data-cache="true"
+                data-pagination-first-text="First"
+                data-pagination-pre-text="Previous"
+                data-pagination-next-text="Next"
+                data-click-to-select="true"
+                data-pagination-last-text="Last"
+                data-query-params="paramsEncoder"
+                data-response-handler="responseHandler"
+                >
+            <thead>
+            <tr>
+                <!--<th data-field="state" data-checkbox="true"></th>-->
+                <th style="text-align: center;" data-field="title" data-sortable="false">专题标题</th>
+                <th data-field="subtitle" data-sortable="false">专题副标题</th>
+                <th data-field="lazytopicposition_name" data-sortable="false" data-editable="true">投放位置</th>
+                <th data-field="topictemplate_name" data-sortable="false" data-editable="false">使用模板</th>
+                <th data-field="creation" data-sortable="false" data-editable="false" data-formatter="dateSimpleStringFormatter">创建时间</th>
+                <th data-field="launchtime" data-sortable="false" data-editable="false" data-formatter="dateSimpleStringFormatter">投放起始时间</th>
+                <th data-field="expired" data-sortable="false" data-editable="false" data-formatter="dateSimpleStringFormatter">投放结束时间</th>
+                <th data-field="topicstatus" data-sortable="false" data-editable="false">状态</th>
+                <th data-field="operate"
+                    data-formatter="operateFormatter"
+                    data-events="operateEvents">操作</th>
+            </tr>
+            </thead>
+        </table>
+    </section>
+</div>
+
+<div class="col-md-12" style="font-size: 12px;line-height: 26px;">
+    <p class="page-footer-line"></p>
+    <P>此页面为对应专题位所有专题，默认列表显示有效期内的专题，勾选查看全部，可以查看本专题位已过期的历史记录。</P>
+    <P style="padding-bottom: 26px;">专题按有效时间顺序排列，时间高亮的专题为本专题位当前正在进行的专题！</P>
+</div>
+
+
+<div class="modal fade" id="add-app-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加应用</h4>
+            </div>
+            <div class="modal-body">
+                <div id="add-app-container" style="height: 400px;width: 100%;">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="getChoosedAppIDs()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="upload-image-modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加应用</h4>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="uploadfile" />
+                <h2>上传结果:<span id="uploadImageResult"></span></h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1200px;">
+        <div class="modal-content" style="margin-top: 100px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新建专题</h4>
+            </div>
+            <div class="modal-body"  style="height: 600px;">
+                <div class="col-md-7">
+                    <form id="new_topic_form" enctype="multipart/form-data" method="post">
+
+                        <div class="form-group clear overflow">
+                            <label class="col-md-3" for="subjectPosition" style="padding: 0; padding-top: 6px;">专题位置:</label>
+                            <div class="col-md-9">
+                                <!--<input type='text' disabled="disabled" id="subjectPosition" value="首页Top1" class="form-control"/>-->
+                                <select class="d_input form-control position" name="lazytopicposition_name" id="subjectPosition">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; height: 8px;"></div>
+
+                        <div class="form-group clear overflow">
+                            <label class="col-md-3" for="subjectImage" style="padding: 0; padding-top: 6px;">专题模板:</label>
+                            <div class="col-md-9">
+                                <select class="d_input form-control template templateContentSelect" name="topictemplate_name" id="subjectImage">
+                                </select>
+                            </div>
+                            <!--<div class="col-md-1">-->
+                            <!--<button type="button" class="btn btn-danger"  data-toggle="modal" href="#myModaltemplate001">编辑</button>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div style="width: 100%; height: 8px;"></div>
+
+
+                        <div class="form-group clear overflow">
+                            <div class="form-group ">
+                                <label class="col-md-3" style="padding: 0; padding-top: 6px;">有效期：</label>
+                                <div class="col-md-4">
+                                    <input type='text' class="d_input form-control" name="launchtime" id='datetimepicker03' />
+                                </div>
+
+                                <label class="col-md-1" style="padding: 0; padding-top: 6px; text-align: center;">至</label>
+                                <div class="col-md-4">
+                                    <input type='text' class="d_input form-control" name="expired" id='datetimepicker04' />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; height: 8px;"></div>
+
+
+                        <div class="form-group clear overflow">
+                            <label class="col-md-3" for="subjectTitle" style="padding: 0; padding-top: 6px;">主标题:</label>
+                            <div class="col-md-9">
+                                <input type="text" class="d_input form-control" id="subjectTitle" name="title" placeholder="请输入主标题名称">
+                            </div>
+                        </div>
+
+                        <div class="form-group clear overflow" style="display: none;">
+                            <div class="col-md-9">
+                                <input type="text" class="d_input form-control" id="refto_id"  name="refto" placeholder="请输入主标题名称">
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; height: 8px;"></div>
+
+
+                        <div class="form-group clear overflow">
+                            <label class="col-md-3" for="subjectTitle" style="padding: 0; padding-top: 6px;">副标题:</label>
+                            <div class="col-md-9">
+                                <input type="text" class="d_input form-control" id="subjectSubtitle" name="subtitle" placeholder="请输入副标题名称">
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; height: 8px;"></div>
+
+                        <div class="form-group clear overflow">
+                            <label class="col-md-6" for="subjectDesc" style=" padding-top: 8px;">模版编辑:</label>
+                            <div class="col-md-6" style=" padding-bottom: 10px; text-align: right;">
+                                <button type="button" class="d_input btn btn-default" onclick="uploadImage()">上传图片</button>
+                                <button type="button" class="d_input btn btn-default" onclick="searchApp()">查询app</button>
+                                <button type="button" class="d_input btn btn-danger" onclick="refreshTemplate()">刷新</button>
+                            </div>
+                            <div class="col-md-12" style="padding-left: 0;">
+                                <textarea class="form-control d_input" id="subjectDesc" name="action" placeholder="URL..." style="height: 130px;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group clear overflow">
+                            <div class="col-md-12" style="margin-left: -15px;">
+                                <input type="file" class="d_input" name="new_topic_img" value="上传本地图片" style="display: inline-block;"/>
+                            </div>
+                        </div>
+                        <div style="width: 100%; height: 8px;"></div>
+
+                        <div id="btns" class="d_button" >
+                            <button id="new_topic_cancel_btn" type="button" class="btn btn-default" data-dismiss="modal">放弃</button>
+                            <button id="new_topic_draft_btn" type="submit" class="btn btn-danger" onclick="changeTarget('/topic/draft','#new_topic_form')">存档</button>
+                            <button id="new_topic_release_btn" type="submit" class="btn btn-danger" onclick="changeTarget('/topic/release','#new_topic_form')">发布</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-5" style="height: 300px; background-color: #ffffff;">
+                    <div>
+                        <iframe id="frame" style="height: 560px; width: 460px;" src="../topic_template/topic_template_001/index.html" ></iframe>
+                    </div>
+                </div>
+
+                <!--<div class="modal-dialog" >-->
+                <!--<div class="modal-content">-->
+                <!--<div class="modal-header" style="height: 46px;">-->
+                <!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>&ndash;&gt;-->
+                <!--<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" href="#" style="position: absolute; right: 16px; top: 6px; font-size: 14px;">数据提交</button>-->
+                <!--<h4 class="modal-title">编辑专题</h4>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                <!--<iframe style="height: 700px; width: 570px;" src="../topic_template/topic_template_001/index.html" />-->
+                <!--</div>-->
+                <!--</div> &lt;!&ndash; /.modal-content &ndash;&gt;-->
+                <!--</div> &lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+
+                <!--<div class="form-group clear overflow">-->
+                <!--<label class="col-md-3" for="subjectDesc" style="padding: 0; padding-top: 6px;">专题描述:</label>-->
+                <!--<div class="col-md-9">-->
+                <!--<textarea class="form-control" id="subjectDesc" placeholder="请输入专题描述"></textarea>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+            <!--<div class="modal-footer">-->
+
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">专题详情</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailTitle">专题名称:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="detailTitle" disabled="disabled">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailDesc">简单描述:</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="detailDesc" disabled="disabled" placeholder="请输入专题描述"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailImage">专题图片:</label>
+                        <div class="col-md-10">
+                            <div class="col-md-8" style="padding: 0;">
+                                <select id="detailImage" class="form-control" disabled="disabled">
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button>查看图片</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailPosition">专题位置:</label>
+                        <div class="col-md-10">
+                            <select id="detailPosition" class="selectpicker" disabled="disabled">
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                            </select>
+                            <div class="image-box">
+                                <img src="" alt="" />
+                                <span>位置图片</span>
+                                <select class="selectpicker" disabled="disabled">
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                </select>
+                                <button>查看图片</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailType">专题内容类型:</label>
+                        <div class="col-md-10">
+                            <select id="detailType" class="selectpicker" disabled="disabled">
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear overflow">
+                        <label class="col-md-2" for="detailTag">一句话标签:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="detailTag" disabled="disabled">
+                        </div>
+                    </div>
+
+                    <div class="form-group added-app">
+                        <label class="col-md-2">已添加应用:</label>
+                        <ul class="col-md-10">
+                            <li class="clear">
+                                <div class="col-md-6">
+                                    <img src="" alt="" />
+                                    <span>小生活</span>
+                                </div>
+                                <div class="col-md-6" style="text-align: right;">
+                                    <span>权重:0-3</span>
+                                </div>
+                            </li>
+                            <li class="clear">
+                                <div class="col-md-6">
+                                    <img src="" alt="" />
+                                    <span>小生活</span>
+                                </div>
+                                <div class="col-md-6" style="text-align: right;">
+                                    <span>权重:0-3</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group lazy-mode">
+                        <label>懒人模式:</label>
+                        <div>
+                            <input type="checkbox" value="开启" disabled="disabled" />
+                            <span>除列表应用以外的会根据关键字，自动读取数据库相关数据</span>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="detailLazy">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" href="#editModal">立即编辑</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow-y:auto;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">专题详情编辑</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editTitle">专题名称:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="editTitle">
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editDesc">简单描述:</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="editDesc" placeholder="请输入专题描述"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editImage">专题图片:</label>
+                        <div class="col-md-6">
+                            <select id="editImage" class="form-control">
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="file" style="display: inline-block;"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editPosition">专题位置:</label>
+                        <div class="col-md-10">
+                            <select id="editPosition" class="form-control">
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                            </select>
+                            <div class="image-box">
+                                <img src="" alt="" />
+                                <span>位置图片</span>
+                                <select class="form-control">
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                    <option>123</option>
+                                </select>
+                                <div style="padding: 10px 0;">
+                                    <span >本地上传:</span>
+                                    <input type="file" style="display: inline-block;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editType">专题内容类型:</label>
+                        <div class="col-md-10">
+                            <select id="editType" class="form-control">
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                                <option>123</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2" for="editTag">一句话标签:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="editTag">
+                        </div>
+                    </div>
+
+                    <div class="form-group clear">
+                        <label class="col-md-2">应用添加</label>
+                        <div class="col-md-10">
+                            <button>从数据库选择</button>
+                            <button>上传应用</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group added-app clear">
+                        <label class="col-md-2">已添加应用:</label>
+                        <ul class="col-md-10">
+                            <li class="clear">
+                                <div class="col-md-4">
+                                    <img src="" alt="" />
+                                    <span>小生活</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>权重:0-3</span>
+
+                                </div>
+                                <div class="col-md-4" style="text-align: right;">
+                                    <button>置顶</button>
+                                </div>
+                            </li>
+                            <li class="clear">
+                                <div class="col-md-4">
+                                    <img src="" alt="" />
+                                    <span>小生活</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>权重:0-3</span>
+
+                                </div>
+                                <div class="col-md-4" style="text-align: right;">
+                                    <button>置顶</button>
+                                    <button>删除</button>
+                                </div>
+                            </li>
+                            <li class="clear">
+                                <div class="col-md-4">
+                                    <input type="text" placeholder="输入应用ID号/名称" />
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>选择应用权重</option>
+                                        <option>选择应用权重</option>
+                                        <option>选择应用权重</option>
+                                        <option>选择应用权重</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" style="text-align: right;">
+                                    <button>添加</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group lazy-mode">
+                        <label>懒人模式</label> 
+                        <div>
+                            <input type="checkbox" value="开启" />
+                            <span>除列表应用以外的会根据关键字，自动读取数据库相关数据</span>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="editLazy">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">存草稿</button>
+                <button type="button" class="btn btn-primary">完成</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModaltemplate001" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" style="width: 1000px;">
+        <div class="modal-content" style="margin-top: 70px;">
+            <div class="modal-header" style="height: 46px;">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" href="#" style="position: absolute; right: 16px; top: 6px; font-size: 14px;">数据提交</button>
+                <h4 class="modal-title">编辑专题</h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="topic_template" style="height: 600px; width: 968px;" src="../topic_template/topic_template_001/index.html"></iframe>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+<link rel="stylesheet" href="../../lib/fileuploadplugin/uploadify.css" />
+<script src="../../lib/fileuploadplugin/jquery.uploadify.min.js"></script>
+</body>
+</html>

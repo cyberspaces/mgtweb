@@ -1,0 +1,84 @@
+#login header .container{
+    height: 70px;
+    width: 100%;
+    background-color: #db5656;
+    box-shadow: 0 1px 1px #b1b1b1;
+
+}
+
+#login #logo {
+    float: left;
+    margin: 12px 15px 15px 60px;
+    height: 70px;
+    width: 70px;
+}
+
+#login #loginBtn {
+    font-size: 14px;
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    height: 30px;
+    width: 150px;
+    line-height: 30px;
+    background-color: #9f3f3f;
+    color: #ffffff;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    z-index: 99;
+}
+
+#login #sys-name {
+    height: 100%;
+    font: 18px "微软雅黑";
+    line-height: 60px;
+    color: #FFFFFF;
+    float: left;
+    padding: 8px 0 0 30px;
+}
+
+#login header .container img {
+    height: 60px;
+    margin: 5px 0 5px 20px;
+}
+
+#login header .container span{
+    display: inline-block;
+    line-height: 70px;
+    height: 70px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    vertical-align: top;
+}
+
+#login header .container a{
+    float: right;
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    margin: 20px 20px 0 0;
+    padding: 0 20px;
+    background: #f1f1f1;
+    font-size: 12px;
+}
+
+#login section .outer-box {
+    width: 600px;
+    padding: 100px 0 100px 150px;
+    height: 200px;
+    margin: 100px auto;
+    border: 1px solid #e3e3e3;
+}
+
+#login section .outer-box li a.forget:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: red;
+}
+
+#login section .outer-box li input[type=submit]{
+    margin: 10px 0 0 85px;
+}

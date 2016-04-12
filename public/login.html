@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="render" content="webkit">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge,chrome=1">
+    <title></title>
+
+
+    <link href="public/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="public/css/login.css" rel="stylesheet" type="text/css" />
+
+    <script src="lib/jquery.min.js"/>
+    <script src="lib/jquery.cookie.js"/>
+
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body id="login">
+    <header>
+        <div class="container">
+            <img id="logo" src="public/img/icon_temp.png" alt="应用商店后台管理系统" />
+            <span id="sys-name">应用商店后台管理系统</span>
+            <a id="loginBtn">登录</a>
+        </div>
+    </header>
+    <script>
+        $(document).ready(function(){
+            $("#login_fm").submit(function (e) {
+                var postData = $(this).serialize();
+                var formURL = $(this).attr("action");
+                $.ajax({
+                    url: formURL,
+                    type: "POST",
+                    data: postData,
+                    dataType:"json",
+                    success: function (data) {
+                        if(data.code==0) {
+                            window.location.href="index.html?name="+data.jsonObj
+                        }
+                        else $("#login_msg").html(data.jsonObj);
+                    },
+                    error: function (jqXHR, textStatus, errorThrow) {
+                        alert(jqXHR.responseText + "->" + textStatus + "->" + errorThrow)
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+    </script>
+    <section>
+        <form id="login_fm" method="post" action="/login">
+            <div class="outer-box">
+                <ul>
+                    <li class="apps-form-box">
+                        <span class="title">账号:</span>
+                        <input style="padding-left: 10px;" type="text" id="username" name="username" placeholder="邮箱/手机号码" required />
+                    </li>
+                    <li class="apps-form-box">
+                        <span class="title">密码:</span>
+                        <input style="padding-left: 10px;" type="password" id="password" name="password" placeholder="6-12位数字字母组合" required />
+                        <a class="forget">忘记密码？</a>
+                    </li>
+                    <li class="apps-form-box">
+                        <input class="button" type="submit" id="login_btn" value="登录" />
+                    </li>
+                    <li class="apps-form-box" id="login_msg">
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

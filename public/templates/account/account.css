@@ -1,0 +1,108 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	margin:0 auto;
+	font-family: "微软雅黑";
+}
+#content{
+	width:1216px;
+	height:1200px;
+	border-right:1px solid #D3D3D3;
+	border-bottom: 1px solid #D3D3D3;
+}
+#title{
+	height:61px;
+	line-height: 61px;
+	vertical-align: middle;
+	border-bottom:1px solid #D3D3D3;
+}
+#title p{
+	float:left;
+	margin-left: 12px;
+}
+#title a{
+	display:block;
+	width:97px;
+	height:35px;
+	float:left;
+	margin-top: 17px;
+	background-color: #E4E4E4;
+	text-align: center;
+	line-height:35px;
+	text-decoration: none;
+}
+#delete{
+	margin-left:920px;
+	width:97px;
+	color:#3399FF;
+}
+#create{
+	margin-left:11px;
+	width:97px;
+}
+#text{
+	height:839px;
+	position:relative;
+}
+#search{
+	height: 71px;
+}
+#search p{
+	margin-top: 17px;
+	margin-left: 32px;
+	float:left;
+}
+#search input,#search select{
+	width:201px;
+	height:30px;
+	margin-top: 14px;
+	margin-left:10px;
+	float:left;
+}
+#searchButton{
+	width:78px;
+	margin-top:12px;
+	margin-left:40px;
+}
+#list{
+	width:1180px;
+	margin-left:16px;
+}
+#modalForm p{
+	margin-bottom: 10px;
+}
+#modalForm p span,#modalForm p a{
+	position:absolute;
+	left:280px;
+}
+#modalForm p span.modalFormF2{
+	position:absolute;
+	left:100px;
+	color: grey;
+}
+#modalForm select{
+	width:174px;
+	height:24px;
+}
+.modalInput{
+	position:absolute;
+	left:100px;
+}
+#changeState-modal-body p{
+	margin-top:12px;
+}
+#changeState-modalForm input{
+	width:400px;
+	height:160px;
+}
+#seeReason-modal-body p{
+	margin-top:12px;
+}
+#createModal p,#editModal p{
+	margin-bottom:20px;
+}
+#changeState textarea{
+	height:150px;
+}
