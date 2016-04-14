@@ -8,18 +8,21 @@
     <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../../lib/bootstrap_table/bootstrap-table.min.css"/>
     <link rel="stylesheet" href="../../public/css/promotion.css"/>
+    <!--
     <style>
         table td {
             padding-right: 30px;
             padding-bottom: 10px;
         }
     </style>
+    <body style="padding:20px;">
+    -->
 </head>
-<body style="padding:20px;">
-<header>
-    <h1>全部应用</h1>
-</header>
-<hr/>
+<body style="padding-left: 30px;padding-top: 10px;">
+<div class="col-md-12">
+    <h1  class="page-head-line">全部应用</h1>
+</div>
+
 <table style="">
     <tr>
         <td>
@@ -64,7 +67,7 @@
         <td>
             <select class="form-control">
                 <option value="选择类型" selected="">选择类型</option>
-                <option value="默认类型1-一句话标签+列表">默认类型1-一句话标签+列表</option>
+                <option value="类型1-一句话标签+列表">类型1-一句话标签+列表</option>
                 <option value="类型2-顶部大图+口号+列表">类型2-顶部大图+口号+列表</option>
                 <option value="类型3-应用大图带应用logo菜单列表">类型3-应用大图带应用logo菜单列表</option>
                 <option value="类型4-主应用带大图附加3个应用菜单列表">类型4-主应用带大图附加3个应用菜单列表</option>
@@ -79,6 +82,8 @@
     <span>&nbsp;&nbsp;&nbsp;</span>
     <button type="button" class="btn btn-danger">删除</button>
 </div>
+
+
 <table id="table"
        data-show-footer="true"
        data-pagination="true"
@@ -90,11 +95,13 @@
        data-pagination-last-text="Last">
     <thead>
     <tr>
-        <th data-field="name" data-sortable="false">应用名</th>
-        <th data-field="update_time" data-sortable="false" data-editable="false">应用更新时间</th>
-        <th data-field="type" data-sortable="false" data-editable="false">应用类别</th>
-        <th data-field="size" data-sortable="false" data-editable="false">大小</th>
-        <th data-field="queue" data-sortable="false" data-editable="true">列表排序</th>
+        <th data-field="id" data-sortable="false">APP ID</th>
+        <th data-field="title" data-sortable="false">应用名</th>
+        <th data-field="last_apppkg_id" data-sortable="false" data-editable="false">Last Package ID</th>
+        <th data-field="apptype" data-sortable="false" data-editable="false">应用类别</th>
+        <th data-field="packagename" data-sortable="false" data-editable="false">包名</th>
+        <th data-field="update_date" data-sortable="false" data-editable="false">更新时间</th>
+        <th data-field="t_downloadcount" data-sortable="false" data-editable="true">下载次数</th>
         <th data-field="operate"
             data-formatter="operateFormatter"
             data-events="operateEvents">

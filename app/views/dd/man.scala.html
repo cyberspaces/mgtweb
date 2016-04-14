@@ -1,9 +1,0 @@
-@(users:List[User])
-<h1>list all user</h1>
-<ul>
-    @for(user<-users) {
-        <li>id->@user.id,job->@user.job,name->@user.name</li>
-        <li>id->@user.id!job->@user.job!name->@user.name</li>
-        <li>@("id->"+user.id)name</li>
-    }
-</ul>

@@ -12,7 +12,7 @@
 //case class UserData(name:String,age:Int)
 //
 ///**
-// * Created by yangguo on 15-4-4.
+// *  15-4-4.
 // */
 //object DefaultApp extends Controller{
 //  def indexs=Action{request=>

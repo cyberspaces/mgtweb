@@ -83,7 +83,7 @@ var promotionPlanTable = (function () {
             res.rows=response.jsonObj;
             return res;
         }else {
-            alert(response.jsonObj);
+            alert(response);
             return response;
         }
     };

@@ -29,9 +29,10 @@
 
 
 </head>
-<form id="form-upload-app" style="padding-left: 15px;">
-
-<div class="col-md-12" style="margin-top: -40px; ">
+<body style="padding-left: 30px;padding-top: 10px;">
+<form id="form-upload-app" >
+<!--  style="padding-left: 15px;" style="margin-top: -40px; " -->
+<div class="col-md-12" >
     <h1 class="page-head-line">上传应用</h1>
 </div>
 
@@ -39,8 +40,8 @@
 
 <!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
 <!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
-<!-----------------------------------------------------应用包上传 模块-------------------------------------------------->
-<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;padding-left: 30px;">应用包上传</label>
+<!-----------------------------------------------------应用包上传 模块--------------padding-left: 30px;------------------------------------>
+<label class="col-md-12" style="padding-top: 6px; text-align: left; font-size: 26px; color: #db5656;">应用包上传</label>
 <div class="col-md-12" style="width: 100%; height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
 
 <div class="col-md-12">
@@ -48,7 +49,7 @@
         <label class="col-md-1" style="padding-top: 6px; text-align: center;" id="abc">上传APK:</label>
 
         <div class="col-md-5">
-            <input type="text" class="form-control" name="downloadurls" placeholder="http://ABC/sth/……">
+            <input type="text" class="form-control" name="downloadurls" placeholder="http://us.newasst.com:8085/……">
         </div>
 
         <div class="col-md-3">
@@ -63,7 +64,7 @@
         <label class="col-md-1" style="padding-top: 6px; text-align: center;" id="">应用包名:</label>
 
         <div class="col-md-5">
-            <input id="package_id" type="text" name="packagename" class="form-control" placeholder="com.changhong.lazysotre">
+            <input id="package_id" type="text" name="packagename" class="form-control" placeholder="com.some.apk">
         </div>
 
     </div>
@@ -103,7 +104,7 @@
 
         <div class="col-md-3">
             <input type="text" name="maxsdkversion" class="form-control" placeholder="4.3.2">
-            <input type="hidden" name="devcode"/>
+            <input type="hidden" name="devcode" value="0"/>
         </div>
 
         <!--<label class="col-md-3" style="padding-top: 6px; text-align: left; color: #db5656;" >版本数据格式: 4.0.1或者2.3</label>-->

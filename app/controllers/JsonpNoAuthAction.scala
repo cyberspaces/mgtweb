@@ -1,11 +1,11 @@
 package controllers
 
-import _root_.cn.changhong.web.util.{Parser, BadResponseContent, ResponseContent}
+import cn.changhong.web.util.{Parser, BadResponseContent, ResponseContent}
 import controllers.JsonpAction._
 import play.api.mvc._
 
 /**
- * Created by yangguo on 15-6-3.
+ *  15-6-3.
  */
 object JsonpNoAuthAction extends Controller{
   def apply(f: (Request[AnyContent]) => AnyRef): Action[AnyContent] = {

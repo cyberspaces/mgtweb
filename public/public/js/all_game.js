@@ -1,3 +1,5 @@
+window.lazybackendserver="http://us.newasst.com:8080";
+
 var promotionPos = $('#promotion-pos');
 var deleteAlert = $('#delete-alert-modal');
 var tabs = $('#myTabs');
@@ -154,7 +156,7 @@ function showAddModal(){
 
 $.ajax({
     type:'get',
-    url:'http://123.57.46.78:8083/admin/apps/category/gets?params=0&columns=',
+    url:lazybackendserver+'/admin/apps/category/gets?params=0&columns=',
     success:addPromotionSuccess
 });
 

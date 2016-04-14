@@ -1,28 +1,38 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
-# ~~~~
+#
 
 # Home page
+
 GET           /                                  controllers.Application.index
+
 # Map static resources from the /public folder to the /assets URL path
+
 GET           /assets/*file                      controllers.Assets.at(path="/public", file)
 
 GET           /admins/*file                      controllers.Assets.at(path="/public",file)
 
 #GET           /*file                            controllers.Assets.at(path="/public",file)
 
+# 账号管理
+
 POST          /login                             controllers.Application.login
 
-GET           /main                              controllers.Application.main(name:String)
+GET           /admin/logout                      controllers.Application.logout
 
-GET           /AccountManager                    controllers.Application.account
+# GET           /main                              controllers.Application.main(name:String)
 
-#获取所有账号信息
+# GET           /AccountManager                    controllers.Application.account
+
+# 账号信息
+
 GET           /admins                            controllers.Application.allAccount
 
 POST          /newAdmin                          controllers.Application.newAdmin
 
 DELETE        /admin                             controllers.Application.deleteAdmin(id:String)
+
+# 专题管理
 
 GET           /topic/locations                   controllers.TopicApplication.getAllTopicPosition
 
@@ -30,21 +40,20 @@ GET           /topic/contents                    controllers.TopicApplication.ge
 
 POST          /topic/new                         controllers.TopicApplication.addTopic
 
-GET           /testbootstraptable                controllers.bootstrap.TestApplication.getData
-
 GET           /topic/templates                   controllers.TopicApplication.getTopicTemplates
-
-POST          /file/upload                       controllers.Application.uploadFile
 
 POST          /topic/release                     controllers.Application.createReleaseTopic
 
 POST          /topic/draft                       controllers.Application.createDraftTopic
 
-POST          /fileupload                        controllers.Application.uploadFile
+# GET           /topic/template/$id<[0-9]+>        controllers.Application.h5TopicModuleInstance(id:String)
+
+
+GET           /template/apps                     controllers.Application.getAppsTitleInfo
 
 GET           /element/img/$id<[0-9]+>           controllers.Application.getImgElement(id:String)
 
-GET           /template/apps                     controllers.Application.getAppsTitleInfo
+# APP推广管理
 
 POST          /admin/promoted/creation           controllers.PromoteAppModelApplication.createdPromotedWorkSheet
 
@@ -52,32 +61,50 @@ POST          /admin/promoted/add/action         controllers.PromoteAppModelAppl
 
 GET           /admin/promoted/gets               controllers.PromoteAppModelApplication.pagingSearchPromotedApps
 
-GET           /admin/apps/category/gets          controllers.PromoteAppModelApplication.getCategory
+# APP 管理
 
-GET           /jsonpdemo                         controllers.Application.jsonpDemo
+GET           /admin/apps/category/gets          controllers.PromoteAppModelApplication.getCategory
 
 GET           /admin/apps/gets                   controllers.Application.useIdsSearchInfo
 
-GET           /test                              controllers.Application.testHtml(path="public/bootstraptable.html")
+GET           /admin/apps/getApps                   controllers.Application.getApps
+
+GET           /admin/apps/getApppkgs                   controllers.Application.getApppkgs
+
+GET           /admin/apps/getApppkgInfoById                   controllers.Application.getApppkgInfoById
 
 GET           /admin/apps/search_c_title         controllers.Application.conditionSearchAppIds
 
-#GET           /testTemplateModel1                controllers.Application.testTopicTemplateModule
-
-GET           /topic/template/$id<[0-9]+>        controllers.Application.h5TopicModuleInstance(id:String)
-
-GET           /admin/logout                      controllers.Application.logout
-
+# APK 管理
 POST          /admin/apk/version                 controllers.ApkVersionManager.newApkVersion
 
 GET           /admin/apk/lastversion             controllers.ApkVersionManager.getApkLastVersion
 
 POST          /admin/apk/create_review_release                 controllers.Application.createNewApk
 
-GET           /admin/stats/total                controllers.stats.AppStats.getBriefStats
+# 统计信息
 
-GET           /admin/stats/search               controllers.stats.AppStats.getAppUsageStats
+GET           /stats/appstore/getStatsPosition             controllers.AppsApplication.getStatsPosition
+GET           /stats/appstore/getStatsProvider             controllers.AppsApplication.getStatsProvider
+GET           /stats/appstore/getStatsProducer             controllers.AppsApplication.getStatsProducer
+GET           /stats/appstore/getStatsAndroidsystem             controllers.AppsApplication.getStatsAndroidsystem
 
+GET           /stats/apps/getStatsAppsUseFrequency             controllers.AppsApplication.getStatsAppsUseFrequency
+GET           /stats/apps/getStatsAppsBattery             controllers.AppsApplication.getStatsAppsBattery
+GET           /stats/apps/getStatsAppsTraffic             controllers.AppsApplication.getStatsAppsTraffic
+GET           /stats/apps/getStatsAppsMemory             controllers.AppsApplication.getStatsAppsMemory
+
+# 上传 暂时禁用
+POST          /file/upload                       controllers.Application.uploadFile
+POST          /fileupload                        controllers.Application.uploadFile
+
+# ???
+# GET           /testbootstraptable                controllers.TestApplication.getData
+# GET           /jsonpdemo                         controllers.Application.jsonpDemo
+# GET           /test                              controllers.Application.testHtml(path="public/bootstraptable.html")
+# GET          /testTemplateModel1                controllers.Application.testTopicTemplateModule
+
+# 已禁用
 
 #GET         /getList                    controllers.Application.getList
 #
@@ -101,4 +128,4 @@ GET           /admin/stats/search               controllers.stats.AppStats.getAp
 #
 #GET         /doAction                   controllers.AccountController.login
 #
-#GET /test controllers.AccountController.test
+#GET        /test                       controllers.AccountController.test

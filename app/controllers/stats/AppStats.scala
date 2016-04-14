@@ -7,13 +7,13 @@ import controllers.JsonpAction
 import play.api.mvc.{ Controller}
 
 /**
- * Created by yangguo on 16/2/23.
+ *  16/2/23.
  * 增加两张表
  * 2.统计信息日表和统计信息月表
  *
  * 月表结构：time(已当月的时间戳作为值),appid,downloadcount,country
  */
-object AppStats extends Controller{
+class AppStats extends Controller{
   val tableName="tb_base_stats"
   val appName="lazystore"
   val redis_stats_current_user="f_online"
@@ -29,12 +29,12 @@ object AppStats extends Controller{
 //    Ok(Parser.ObjectToJsonString(responseContent))
 //  }
   //url?st=10L,et=10L,max=20,page=1,[,country='china'][,type='day'/'month']
-  //统计日表：time(天,时间戳),appid,downloadCount,country
+  //统计日表：time(天,时间戳),appID,downloadCount,country
   //统计月表：time(月,时间戳),appID,downloadCount,country
-  def getAppUsageStats=JsonpAction{(request,cookie)=>
+  def getAppUsageStats()=JsonpAction{(request,cookie)=>
     val st=request.getQueryString("st")
     val et=request.getQueryString("et")
-    val page=request.getQueryString("p") match{
+    val page=request.getQueryString("page") match{
       case Some(_p)=>try{
         var pg=_p.toInt
         if(pg<0){
@@ -58,19 +58,15 @@ object AppStats extends Controller{
         else tb_month_stats
       case None=> tb_month_stats
     }
-    val appid=request.getQueryString("appid") match {
-      case Some(id)=> id
-      case None=> "*"
-    }
     val sql=request.getQueryString("country") match{
-      case Some(country)=>s"select * from $tableName where appid='$appid' and country='$country' and time>=$st and time <=$et limit ${page*max},$max"
-      case None=>s"select * from $tableName where appid='$appid' and time>=$st and time <=$et limit ${page*max},$max"
+      case Some(country)=>s"select * from $tableName where country='$country' and time>=$st and time <=$et limit ${page*max},$max"
+      case None=>s"select * from $tableName where time>=$st and time <=$et limit ${page*max},$max"
     }
     val result=SqlProvider.exec(sql)
     Ok(Parser.ObjectToJsonString(result))
   }
 
-  def getBriefStats=JsonpAction{(request,cookie)=>
+  def getBriefStats()=JsonpAction{(request,cookie)=>
     val value=RedisPoolManager.redisCommand{client=>
       client.hgetAll(redis_stats_key)
     }

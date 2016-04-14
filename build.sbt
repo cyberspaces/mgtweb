@@ -14,7 +14,7 @@ libraryDependencies += "com.twitter" % "util-core_2.10" % "6.22.0" withSources()
 
 libraryDependencies += "com.twitter" % "finagle-core_2.10" % "6.22.0" withSources() withJavadoc()
 
-libraryDependencies += "io.netty" % "netty" % "3.9.4.final" withSources() withJavadoc()
+libraryDependencies += "io.netty" % "netty" % "3.9.4.Final" withSources() withJavadoc()
 
 libraryDependencies += "net.liftweb" % "lift-json_2.10" % "3.0-M1" withSources() withJavadoc()
 

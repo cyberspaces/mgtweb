@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bar Chart</title>
+		<script src="../lib/Chart/Chart.js"></script>
+		<script src="../lib/jquery.min.js"></script>
+	</head>
+	<body>
+	<div name="dashboard" style="width:100%; float:left;">
+
+		<div id="canvas_holder" align="center" style="height: 400px; width: 400px;  float:left;">
+			<canvas id="canvas" height="350" width="400"></canvas>
+			<div>使用频率(次/月)</div>
+		</div>
+
+		<div id="canvas_holder1" align="center" style="height: 400px; width: 400px;  float:left;">
+			<canvas id="canvas1" height="350" width="400"></canvas>
+			<div>用电量(mAh)</div>
+		</div>
+
+		<div id="canvas_holder2" align="center" style="height: 400px; width: 400px;  float:left;">
+			<canvas id="canvas2" height="350" width="400"></canvas>
+			<div>流量(GB)</div>
+		</div>
+		<div id="canvas_holder3" align="center" style="height: 400px; width: 400px;  float:left;">
+			<canvas id="canvas3" height="350" width="400"></canvas>
+			<div>存储(GB)</div>
+		</div>
+		<div id="canvas_holder4" align="center" style="height: 400px; width: 400px;  float:left;">
+			<canvas id="canvas4" height="350" width="400"></canvas>
+			<div>RAM(MB)</div>
+		</div>
+
+		<div style="clear: both;"></div>
+	</div>
+
+	<script>
+	var randomScalingFactor = function(){ return Math.round(Math.random()*5)};
+
+
+	var tempdata = [];
+
+	var barChartData = {
+		labels : null,
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				//data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				data : tempdata
+			}
+			/* ,
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				//data : tempdata
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),
+						randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			} */
+		]
+
+	}
+	window.onload = function(){
+		var ctx = document.getElementById("canvas").getContext("2d");
+
+		$.ajax({
+			url : "/stats/apps/getStatsAppsUseFrequency?ts="+new Date().valueOf(),
+			type:"GET",
+			dataType:"json",
+			success:function(rsp){
+				if(rsp.code==0) {
+					var pieDatalist=rsp.jsonObj;
+					var templabels = [];
+					$.each(pieDatalist, function(index, row) {
+
+						templabels[index]=row.packagename;
+						tempdata[index]=row.rsvalue;
+					});
+					barChartData.labels=templabels;
+					console.log(templabels);
+					window.myBar = new Chart(ctx).Bar(barChartData, {
+						responsive : true
+					});
+
+				}
+			}
+		});
+
+		var ctx1 = document.getElementById("canvas1").getContext("2d");
+
+		$.ajax({
+			url : "/stats/apps/getStatsAppsBattery?ts="+new Date().valueOf(),
+			type:"GET",
+			dataType:"json",
+			success:function(rsp){
+				if(rsp.code==0) {
+					var pieDatalist=rsp.jsonObj;
+					var templabels = [];
+					$.each(pieDatalist, function(index, row) {
+
+						templabels[index]=row.packagename;
+						tempdata[index]=row.rsvalue;
+					});
+					barChartData.labels=templabels;
+					console.log(templabels);
+					window.myBar1 = new Chart(ctx1).Bar(barChartData, {
+						responsive : true
+					});
+
+				}
+			}
+		});
+
+		var ctx2 = document.getElementById("canvas2").getContext("2d");
+
+		$.ajax({
+			url : "/stats/apps/getStatsAppsTraffic?ts="+new Date().valueOf(),
+			type:"GET",
+			dataType:"json",
+			success:function(rsp){
+				if(rsp.code==0) {
+					var pieDatalist=rsp.jsonObj;
+					var templabels = [];
+					$.each(pieDatalist, function(index, row) {
+
+						templabels[index]=row.packagename;
+						tempdata[index]=row.rsvalue/1024/1024/1024;
+					});
+					barChartData.labels=templabels;
+					console.log(templabels);
+					window.myBar2 = new Chart(ctx2).Bar(barChartData, {
+						responsive : true
+					});
+
+				}
+			}
+		});
+
+		var ctx3 = document.getElementById("canvas3").getContext("2d");
+
+		$.ajax({
+			url : "/stats/apps/getStatsAppsMemory?ts="+new Date().valueOf(),
+			type:"GET",
+			dataType:"json",
+			success:function(rsp){
+				if(rsp.code==0) {
+					var pieDatalist=rsp.jsonObj;
+					var templabels = [];
+					$.each(pieDatalist, function(index, row) {
+
+						templabels[index]=row.packagename;
+						tempdata[index]=row.rsvalue/1024;
+					});
+					barChartData.labels=templabels;
+					console.log(templabels);
+					window.myBar3 = new Chart(ctx3).Bar(barChartData, {
+						responsive : true
+					});
+
+				}
+			}
+		});
+
+		var ctx4 = document.getElementById("canvas4").getContext("2d");
+
+		$.ajax({
+			url : "/stats/apps/getStatsAppsMemory?ts="+new Date().valueOf(),
+			type:"GET",
+			dataType:"json",
+			success:function(rsp){
+				if(rsp.code==0) {
+					var pieDatalist=rsp.jsonObj;
+					var templabels = [];
+					$.each(pieDatalist, function(index, row) {
+
+						templabels[index]=row.packagename;
+						tempdata[index]=row.rsvalue/1024;
+					});
+					barChartData.labels=templabels;
+					console.log(templabels);
+					window.myBar4 = new Chart(ctx4).Bar(barChartData, {
+						responsive : true
+					});
+
+				}
+			}
+		});
+	}
+
+	</script>
+	</body>
+</html>

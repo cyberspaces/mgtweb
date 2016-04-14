@@ -1,6 +1,5 @@
-/**
- * Created by LeoLeung on 8/4/2015.
- */
+window.lazystorageserver="http://us.newasst.com:8085";
+window.lazystorageserveruploader=lazystorageserver+"/upload.php";
 
 $.fn.form = function(method, data){
     var $this = this;
@@ -32,9 +31,12 @@ upLoadAppModal.on('change', function (e) {
     tabsModal.find('a:eq(' + index + ')').tab('show');
 });
 
+
+//APP上传
 var uploadForm = $('#form-upload-app');
 $('#app-file').uploadify({
-    uploader:'/fileupload', //服务器地址
+    //uploader:'/fileupload', //服务器地址
+    uploader: lazystorageserveruploader,
     auto : true,//自动上传
     'buttonText':'选择apk',
     queueSizeLimit: 1,
@@ -46,16 +48,16 @@ $('#app-file').uploadify({
     'swf': "../../lib/uploadify/uploadify.swf",
     onUploadSuccess: function (fileObj, data, response){
         if(response) {
+            console.info($.parseJSON(data));
             data = $.parseJSON(data);
-            var _formdata= $.parseJSON(data.jsonObj[0]);
-
-            if(data.code >= 0){
-                _formdata.downloadurls = default_storage_service + '/' + _formdata.downloadurls
+            var _formdata= data; //$.parseJSON(data.jsonObj[0]);
+            if(data.errcode == 0){
+                _formdata.downloadurls = lazystorageserver + '/' + _formdata.mediakey;
                 uploadForm.form('load', _formdata);
-                $("#package_id").val(_formdata.apkPackage)
+                $("#package_id").val(_formdata.mediakey)
             }
             else{
-                alert(data.jsonObj);
+                alert($.parseJSON(data));
             }
         }
         else{
@@ -64,13 +66,11 @@ $('#app-file').uploadify({
     }
 });
 
-//----------------------选择应用图标上传---------------------------
-var default_storage_service='http://sj.chphone.cn:8085';
 //----------------------选择应用截图上传---------------------------
 for(var i = 1;i<=5;i++) {
     +function(index) {
         $('#app-screenshot-file-' + i).uploadify({
-            uploader: '/fileupload', //服务器地址
+            uploader: lazystorageserveruploader, //服务器地址
             auto: true,//自动上传
             'buttonText': '选择截图' + index,
             queueSizeLimit: 1,
@@ -82,11 +82,11 @@ for(var i = 1;i<=5;i++) {
             onUploadSuccess: function (fileObj, data, response) {
                 if (response) {
                     data = $.parseJSON(data);
-                    if (data.code >= 0) {
-                        $('.app-screenshot:eq(' + (index - 1) + ')').children('img').attr('src', default_storage_service + '/' + data.jsonObj[0]);
-                    }
-                    else {
-                        alert(data.jsonObj);
+                    if (data.errcode == 0) {
+                        $('.app-screenshot:eq(' + (index - 1) + ')').children('img').attr('src', lazystorageserver + '/' + data.mediakey);
+                        $('#app-screenshot-file-' + i).val(lazystorageserver + '/' + data.mediakey);
+                    } else {
+                        alert(data);
                     }
                 }
                 else {
@@ -101,11 +101,11 @@ for(var i = 1;i<=5;i++) {
 //----------------------企业开发者身份信息上传---------------------------
 //----------------------企业开发者身份信息上传---------------------------
 
-
+//选择一张图片 App logo 选择应用图标上传
 function appCommonFile(id){
     var $appEA = $('#' + id);
     $appEA.uploadify({
-        uploader:'/fileupload', //服务器地址
+        uploader: lazystorageserveruploader, //服务器地址
         auto : true,//bu自动上传
         'buttonText':'选择一张图片',
         queueSizeLimit: 1,
@@ -117,13 +117,12 @@ function appCommonFile(id){
         onUploadSuccess: function (fileObj, data, response){
             if(response) {
                 data = $.parseJSON(data);
-                if(data.code >= 0){
+                if(data.errcode == 0){
                     var $view = $('#' + id).parent().siblings('.view-sixth');
-                    $view.children('img').attr('src', default_storage_service + '/' + data.jsonObj[0]);
-                    $view.children('input[type="hidden"]').val(default_storage_service + '/' + data.jsonObj[0]);
-                }
-                else{
-                    alert(data.jsonObj);
+                    $view.children('img').attr('src', lazystorageserver + '/' + data.mediakey);
+                    $view.children('input[type="hidden"]').val(lazystorageserver + '/' + data.mediakey);
+                } else{
+                    alert(data);
                 }
             }
             else{
@@ -173,6 +172,9 @@ function submit(btn){
             valiate = false;
         }
     });
+
+    valiate = true;
+
     if(!valiate){
         alert('存在未输入的项目');
         return;

@@ -1,3 +1,6 @@
+
+window.lazybackendserver="http://us.newasst.com:8080";
+
 var promotionPos = $('#promotion-pos');
 var deleteAlert = $('#delete-alert-modal');
 var tabs = $('#myTabs');
@@ -87,9 +90,23 @@ var testData = [
 ];
 
 $(function () {
-    $table.bootstrapTable({
-        data: testData
-    });
+//    $table.bootstrapTable({
+//        data: testData
+//    });
+
+        $.ajax({
+            url:"/admin/apps/getApppkgs?ts="+new Date().valueOf(),
+            type:"GET",
+            dataType:"json",
+            success:function(rsp){
+                if(rsp.code==0) {
+                    var jsonObj=rsp.jsonObj;
+                    $table.bootstrapTable({
+                            data: jsonObj
+                     });
+                }
+            }
+        });
 
     $table.on('all.bs.table', function (e, name, args) {
     });
@@ -151,28 +168,30 @@ function showAddModal(){
     $('#add-modal').modal();
 }
 
+function addPromotionSuccess(data){
+    var options='<option value="None">请选择分类</option>';
+     data = $.parseJSON(data);
+     $.each(data, function(index, value) {
+        options += '<option value="' + value.name + '">' + value.name + "</option>"
+     });
+     $('#promotion-pos').html(options);
+}
 
 $.ajax({
     type:'get',
-    url:'http://123.57.46.78:8083/admin/apps/category/gets?params=0&columns=',
-    success:addPromotionSuccess
+    url: '/admin/apps/category/gets?params=0&columns=',
+    success: addPromotionSuccess
 });
 
-function addPromotionSuccess(data){
-    //alert(11);
-}
-
-function addPromotion(){
-    var data = [{
-        mainposition:'leibiao1',
-        subposition:''
-    },{
-        mainposition:'leibiao1',
-        subposition:''
-    }];
-    setTimeout(function(){
-        addPromotionSuccess(data);
-    },5000)
-}
-
-addPromotion();
+//function addPromotion(){
+//    var data = [{
+//        mainposition:'leibiao1',
+//        name:"test1",
+//        subposition:''
+//    },{
+//        mainposition:'leibiao1',
+//        name:"test2",
+//        subposition:''
+//    }];
+//        addPromotionSuccess(data);
+//}

@@ -1,7 +1,7 @@
 package controllers
 
 /**
- * Created by yangguo on 15-4-7.
+ *  15-4-7.
  */
 object GlobalConfiguration {
   val Request_Header_Auth_Key="Authorization"

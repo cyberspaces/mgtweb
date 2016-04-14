@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Pie Chart</title>
+		<script src="../lib/Chart/Chart.js"></script>
+		<script src="../lib/jquery.min.js"></script>
+	</head>
+	<body >
+	<div name="dashboard" style="width:100%; float:left;">
+		<div id="canvas-holder" align="center" style="width:350px; height:350px; float:left;" >
+			<canvas id="chart-area" width="300" height="300"> </canvas>
+			<div>国家</div>
+		</div>
+		<div id="canvas-holder1" align="center" style="width:350px; height:350px; float:left;" >
+			<canvas id="chart-area1" width="300" height="300"> </canvas>
+			<div>运营商</div>
+		</div>
+		<div id="canvas-holder2" align="center" style="width:350px; height:350px; float: left;" >
+			<canvas id="chart-area2" width="300" height="300"> </canvas>
+			<div>品牌</div>
+		</div>
+		<div id="canvas-holder3" align="center" style="width:350px; height:350px; float: left;" >
+			<canvas id="chart-area3" width="300" height="300"> </canvas>
+			<div>Android版本</div>
+		</div>
+
+		<div style="clear: both;"></div>
+	</div>
+
+	<script>
+
+		var pieDataPosition = [
+				{
+					value: 4,
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "Sichuan"
+				},
+				{
+					value: 160,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "中国"
+				},
+				{
+					value: 86,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "未知"
+				},
+				{
+					value: 40,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "Grey"
+				},
+				{
+					value: 120,
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Dark Grey"
+				}
+
+			];
+
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				//window.myPie = new Chart(ctx).Pie(pieDatalist);
+
+				$.ajax({
+					url : "/stats/appstore/getStatsPosition?ts="+new Date().valueOf(),
+					type:"GET",
+					dataType:"json",
+					success:function(rsp){
+						if(rsp.code==0) {
+							var pieDatalist=rsp.jsonObj;
+							$.each(pieDatalist, function(index, row) {
+								//pieDatalist[index]={};
+								pieDatalist[index].label=row.position;
+								pieDatalist[index].value=row.value;
+							});
+							console.log(pieDatalist);
+							window.myPie = new Chart(ctx).Pie(pieDatalist);
+						}
+					}
+				});
+
+
+				var ctx1 = document.getElementById("chart-area1").getContext("2d");
+				//window.myPie1 = new Chart(ctx1).Pie(pieDataPosition);
+				$.ajax({
+					url : "/stats/appstore/getStatsProvider?ts="+new Date().valueOf(),
+					type:"GET",
+					dataType:"json",
+					success:function(rsp){
+						if(rsp.code==0) {
+							var pieDatalist=rsp.jsonObj;
+							$.each(pieDatalist, function(index, row) {
+								//pieDatalist[index]={};
+								pieDatalist[index].label=row.providername;
+								pieDatalist[index].value=row.value;
+							});
+							console.log(pieDatalist);
+							window.myPie1 = new Chart(ctx1).Pie(pieDatalist);
+						}
+					}
+				});
+
+				var ctx2 = document.getElementById("chart-area2").getContext("2d");
+				//window.myPie2 = new Chart(ctx2).Pie(pieDataPosition);
+				$.ajax({
+					url : "/stats/appstore/getStatsProducer?ts="+new Date().valueOf(),
+					type:"GET",
+					dataType:"json",
+					success:function(rsp){
+						if(rsp.code==0) {
+							var pieDatalist=rsp.jsonObj;
+							$.each(pieDatalist, function(index, row) {
+								//pieDatalist[index]={};
+								pieDatalist[index].label=row.producer;
+								pieDatalist[index].value=row.value;
+							});
+							console.log(pieDatalist);
+							window.myPie2 = new Chart(ctx2).Pie(pieDatalist);
+						}
+					}
+				});
+
+				var ctx3 = document.getElementById("chart-area3").getContext("2d");
+				//window.myPie3 = new Chart(ctx3).Pie(pieDataPosition);
+				$.ajax({
+					url : "/stats/appstore/getStatsAndroidsystem?ts="+new Date().valueOf(),
+					type:"GET",
+					dataType:"json",
+					success:function(rsp){
+						if(rsp.code==0) {
+							var pieDatalist=rsp.jsonObj;
+							$.each(pieDatalist, function(index, row) {
+								//pieDatalist[index]={};
+								pieDatalist[index].label=row.system;
+								pieDatalist[index].value=row.value;
+							});
+							console.log(pieDatalist);
+							window.myPie3 = new Chart(ctx3).Pie(pieDatalist);
+						}
+					}
+				});
+			};
+
+
+
+	</script>
+	</body>
+</html>

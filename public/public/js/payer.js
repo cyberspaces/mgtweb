@@ -6,9 +6,9 @@ var $table = $('#table');
 
 var testData = [
     {
-        'title': '小生活',
+        'title': '小生活 public/js/payer.js testData',
         'apply_time': '1999-09-09 12:12:12',
-        'applicant': '腾讯公司',
+        'applicant': 'XXXXX腾讯公司',
         'valid_date': '2015-02-13至2015-04-15',
         'type': '全付',
         'position': '首页top1',
@@ -17,14 +17,14 @@ var testData = [
     {
         'title': '小生活',
         'apply_time': '1999-09-09 12:12:12',
-        'applicant': '腾讯公司',
+        'applicant': '腾讯公司X',
         'valid_date': '2015-02-13至2015-04-15',
         'type': '全付',
         'position': '首页top1',
         'state': '审核中'
     },
     {
-        'title': '小生活',
+        'title': '小生活XXXX',
         'apply_time': '1999-09-09 12:12:12',
         'applicant': '腾讯公司',
         'valid_date': '2015-02-13至2015-04-15',
@@ -33,7 +33,7 @@ var testData = [
         'state': '审核通过'
     },
     {
-        'title': '小生活',
+        'title': '小生活XXXXXXXXX',
         'apply_time': '1999-09-09 12:12:12',
         'applicant': '腾讯公司',
         'valid_date': '2015-02-13至2015-04-15',
@@ -42,9 +42,9 @@ var testData = [
         'state': '审核未通过'
     },
     {
-        'title': '小生活',
+        'title': '小生活X',
         'apply_time': '1999-09-09 12:12:12',
-        'applicant': '腾讯公司',
+        'applicant': 'X腾讯公司',
         'valid_date': '2015-02-13至2015-04-15',
         'type': '全付',
         'position': '首页top1',

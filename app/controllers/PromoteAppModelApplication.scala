@@ -2,14 +2,14 @@ package controllers
 
 import java.text.SimpleDateFormat
 
-import _root_.cn.changhong.lazystore.persistent.dao.SqlProvider
-import _root_.cn.changhong.web.util.{PagingResponseContent, ResponseContent, Parser, BadResponseContent}
-import controllers.cn.changhong.lazystore.backup.AuthAction
-import controllers.cn.changhong.lazystore.persistent.dao.PromotedAppDao
+import cn.changhong.lazystore.persistent.dao.SqlProvider
+import cn.changhong.web.util.{PagingResponseContent, ResponseContent, Parser, BadResponseContent}
+import cn.changhong.lazystore.backup.AuthAction
+import cn.changhong.lazystore.persistent.dao.PromotedAppDao
 import play.api.mvc._
 
 /**
- * Created by yangguo on 15-4-29.
+ *  15-4-29.
  */
 object PromoteAppModelApplication extends Controller{
   val default_promoted_apps_columns="id,title,description,launchtime,expired,mainposition,subposition,action,creation,status"
@@ -103,7 +103,7 @@ object PromoteAppModelApplication extends Controller{
     val form=defaultTransferFormBody(request.queryString)
     val params=form.getOrElse("params","0")
     val columns=form.getOrElse("columns",default_category_columns)
-    val sql=s"select ${columns} from appcategories where parent='${params}' and status='release'"
+    val sql=s"select ${default_category_columns} from appcategories where parent='${params}' and status='release'"
     val response=SqlProvider.exec(sql)
     Ok(Parser.ObjectToJsonString(response))
   }

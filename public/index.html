@@ -145,6 +145,7 @@
      * tree event
      */
     var treeNodeClick = function (event, treeId, treeNode) {
+        console.log(treeNode);
         if (treeNode.href) {
             if (currentPage == treeNode.href)return;
             frameBody.attr('src', treeNode.href);
@@ -163,7 +164,14 @@
      *  侧边栏树
      */
     var nodes = [
-        {name: '账号管理', href: './templates/account/account.html'},
+        {name: '统计信息', children: [
+            {name: '商城安装情况', href: './stats/pie.html'},
+            {name: '应用安装情况', href: './stats/line-my.html'},
+            {name: '资源利用情况', href: './stats/bar.html'},
+            {name: '内置三个工具', href: './stats/line-appstore-use.html'}
+            ]
+         },
+         {name: '账号管理', href: './templates/account/account.html'},
         {name: '运营管理', children: [
             {name: '管理专题', href: './templates/operation/subjects.html'},
             {name: '管理首发', href: './templates/operation/firstRelease.html'},
@@ -171,8 +179,9 @@
             {name: '管理应用', children: [
                 {name: '推广应用', href: './templates/app/promotion.html'},
                 {name: '全部应用', href: './templates/app/all.html'},
+                {name: '应用版本', href: './templates/app/all_application.html'},
                 {name: '上传应用', href: './templates/app/uploadapp.html'},
-                {name: '虹商城应用更新',href:'./templates/app/upload.html'}
+                {name: '商城更新',href:'./templates/app/upload.html'}
             ]}
         ]}
     ];
@@ -192,6 +201,7 @@
     $.fn.zTree.init($('#menu-bar-menus'), setting, nodes);
     var treeObj = $.fn.zTree.getZTreeObj('menu-bar-menus');
     treeObj.expandAll(true);
+    treeNodeClick( null, "menu-bar-menus_1", treeObj.getNodeByTId("menu-bar-menus_1") );
 
     var url=location.href
     var name=url.substring(url.indexOf('?')+1,url.length).split('=')[1];

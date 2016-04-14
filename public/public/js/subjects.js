@@ -1,4 +1,4 @@
-
+window.lazytemplateserver="http://us.newasst.com:8085";
 
 var $table = $('#table');
 var sid=0
@@ -43,7 +43,7 @@ $(function () {
             if(rsp.code==0) {
                 var data=rsp.jsonObj;
                 $.each(data, function (index, value) {
-                    options += '<option value="' + value.name+ '" topic-url="'+value.url+'" url-data="'+value.template+'">' + value.name + "</option>"
+                    options += '<option value="' + value.name+ '" topic-url="'+lazytemplateserver+'" url-data="'+value.template+'">' + value.name + "</option>"
                 });
                 $("select.template").each(function(){
                     $(this).html(options);
@@ -66,8 +66,10 @@ $(function () {
         var v=$(this).children('option:selected').attr("url-data");
         $("#subjectDesc").val(v);
         var url=$(this).children('option:selected').attr("topic-url");
-        alert(url);
+        console.info(url);
         $('#refto_id').val(url);
+        $('#frame').attr('src',url+'&nonce='+new Date().valueOf());
+        refreshTemplate();
     });
     $("#new_topic_form").ajaxForm({
         success:function(data,status,t){
@@ -288,13 +290,20 @@ $(function(){
 var uploadfile = $("#uploadfile");
 uploadfile.uploadify({
     swf: '../../lib/fileuploadplugin/uploadify.swf',
-    uploader: '/fileupload',
+    //uploader: '/fileupload',
+    uploader: 'http://us.newasst.com:8085/upload.php',
     auto: true,
     multi: false,
     fileTypeExts: '*.gif; *.jpg; *.png',
     buttonText: '选择文件',
     onUploadSuccess: function (file, data, response) {
-        $('#uploadImageResult').text($.parseJSON(data).jsonObj);
+        var temp_mediakey = $.parseJSON(data).mediakey;
+        $('#uploadImageResult').text(temp_mediakey);
+        var temp_icon = $('#subjectDesc').val();
+        temp_icon = temp_icon.replace('icon=','icon='+temp_mediakey+'&');
+        $('#subjectDesc').val(temp_icon);
+        refreshTemplate();
+        console.info($.parseJSON(data));
     },
     onSelect: function () {
         uploadfile.uploadify('settings', 'formData', { });

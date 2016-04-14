@@ -6,7 +6,7 @@ var $table = $('#table');
 
 var testData = [
     {
-        'title': '小生活',
+        'title': '小生活 public/js/firstRelease.js testData',
         'apply_time': '1999-09-09 12:12:12',
         'applicant': '腾讯公司',
         'release_time': '2015-02-13至2015-04-15',
@@ -14,7 +14,7 @@ var testData = [
         'state': '未审核'
     },
     {
-        'title': '小生活',
+        'title': '小生活xxxxxxxxxxx',
         'apply_time': '1999-09-09 12:12:12',
         'applicant': '腾讯公司',
         'release_time': '2015-02-13至2015-04-15',
@@ -24,13 +24,13 @@ var testData = [
     {
         'title': '小生活',
         'apply_time': '1999-09-09 12:12:12',
-        'applicant': '腾讯公司',
+        'applicant': '腾讯公司xxxxxxxxxx',
         'release_time': '2015-02-13至2015-04-15',
         'type': '独家',
         'state': '审核通过'
     },
     {
-        'title': '小生活',
+        'title': 'xxxxxxxxxx小生活',
         'apply_time': '1999-09-09 12:12:12',
         'applicant': '腾讯公司',
         'release_time': '2015-02-13至2015-04-15',
@@ -40,7 +40,7 @@ var testData = [
     {
         'title': '小生活',
         'apply_time': '1999-09-09 12:12:12',
-        'applicant': '腾讯公司',
+        'applicant': 'xxxxxxxxxxx腾讯公司',
         'release_time': '2015-02-13至2015-04-15',
         'type': '独家',
         'state': '已过期'

@@ -1,14 +1,14 @@
 package controllers
 
-import _root_.cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
-import _root_.cn.changhong.lazystore.persistent.dao.{ObjMetadataDao, SqlProvider}
-import _root_.cn.changhong.web.util.{Parser, ResponseContent, BadResponseContent}
-import controllers.cn.changhong.lazystore.backup.AuthAction
-import controllers.cn.changhong.lazystore.controller.chfile.Util
+import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
+import cn.changhong.lazystore.persistent.dao.{ObjMetadataDao, SqlProvider}
+import cn.changhong.web.util.{Parser, ResponseContent, BadResponseContent}
+import cn.changhong.lazystore.backup.AuthAction
+import cn.changhong.lazystore.controller.chfile.Util
 import play.api.mvc.{MultipartFormData, Controller}
 
 /**
- * Created by yangguo on 15-7-13.
+ *  15-7-13.
  */
 object ApkVersionManager extends Controller{
   def newApkVersion()=AuthAction{(request,cookie)=>
@@ -32,7 +32,7 @@ object ApkVersionManager extends Controller{
           case Some(id)=>{
             var internal_ver=dataParts.getOrElse("internal_ver","default")
             if(internal_ver=="default"){
-              val count=SqlProvider.exec1(s"select internal_ver from appupdate where title='${dataParts.getOrElse("title","虹商城")}'") match{
+              val count=SqlProvider.exec1(s"select internal_ver from appupdate where title='${dataParts.getOrElse("title","商城")}'") match{
                 case item::list=>item+1
                 case no=>1
               }
@@ -56,7 +56,7 @@ object ApkVersionManager extends Controller{
   def getApkLastVersion()=JsonpNoAuthAction{request=>
     val params=request.getQueryString("title")match{
       case Some(title)=>title
-      case None=>"虹商城"
+      case None=>"商城"
     }
     val columns=request.getQueryString("columns") match{
       case Some(cls)=>cls
@@ -85,7 +85,5 @@ object ApkVersionManager extends Controller{
     val newFileName=encoderFileName + "." + extensionName
     (newFileName, fileId)
   }
+
 }
-
-
-

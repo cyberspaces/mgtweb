@@ -2,27 +2,27 @@ package controllers
 
 
 import java.io.File
-import java.text.{SimpleDateFormat, DateFormat}
+import java.text.{DateFormat, SimpleDateFormat}
 import java.util.concurrent.atomic.AtomicLong
 
-import _root_.cn.changhong.apk.ApkInfo
-import _root_.cn.changhong.apk.ReadApkPackageInfo
-
-import _root_.cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
-import _root_.cn.changhong.lazystore.persistent.dao.{SqlProvider, AppTopicDao, ObjMetadataDao, AdminAcountDao}
-import _root_.cn.changhong.web.util.{BadResponseContent, ResponseContent, Parser, TokenUtil}
-import controllers.cn.changhong.lazystore.backup.AuthAction
-import controllers.cn.changhong.lazystore.controller.chfile.Util
-import controllers.cn.changhong.lazystore.util.JavaObjToJsonString
+import cn.changhong.apk.ApkInfo
+import cn.changhong.apk.ReadApkPackageInfo
+import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
+import cn.changhong.lazystore.persistent.dao.{AdminAcountDao, AppTopicDao, ObjMetadataDao, SqlProvider}
+import cn.changhong.web.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}
+import cn.changhong.lazystore.backup.AuthAction
+import cn.changhong.lazystore.controller.chfile.Util
+import cn.changhong.lazystore.util.JavaObjToJsonString
+import org.apache.commons.lang.StringEscapeUtils
 import play.api.mvc._
 
 import scala.io.Source
 
 object Application extends Controller {
 
-  private lazy val default_storage_service_url="http://111.9.116.71:8881"
   private lazy val idGenerator=new AtomicLong(1)
   private def createId=(System.currentTimeMillis()+idGenerator.getAndIncrement()).toString
+
   def createNewApk=AuthAction{(request,cookie)=>
 
     val _form=request.body.asFormUrlEncoded
@@ -139,43 +139,44 @@ object Application extends Controller {
     }
     Ok(Parser.ObjectToJsonString(res))
   }
+
   def createInsertSql(map:Map[String,String],tablename:String):String={
     val keys=map.map(_._1).reduce(_+","+_)
-    val values=map.map(kv=>"'"+kv._2+"'").reduce(_+","+_)
+    val values=map.map(kv=>"'"+StringEscapeUtils.escapeSql(kv._2)+"'").reduce(_+","+_)
     s"insert into $tablename($keys) values($values)"
   }
+
   def createUpdateSql(map:Map[String,String],tablename:String,where:String):String={
-    val settings=map.map(kv=>kv._1+"='"+kv._2+"'").reduce(_+","+_)
+    val settings=map.map(kv=>kv._1+"='"+StringEscapeUtils.escapeSql(kv._2)+"'").reduce(_+","+_)
     s"update $tablename set $settings where $where"
   }
+
   def logout=AuthAction{(request,_)=>
 
     Ok(Parser.ObjectToJsonString(ResponseContent("0")))
   }
+
   def testHtml(path: String = "public/index.html") = Action {
     val file = new File(path)
-    println(file.exists().toString + path)
+    println("exists: "+ file.exists().toString + "; path: " + path)
     Ok(Source.fromFile(file).mkString).withHeaders(("Access-Control-Allow-Origin" -> "*"), ("Access-Control-Allow-Methods" -> "POST")).as("text/html")
   }
 
-  //
-  //  def testTopicTemplateModule=Action{
-  ////    Ok(views.html.topic_template.template_01("hello"))
-  //  }
   def h5TopicModuleInstance(id: String) = Action { request =>
     val view = id match {
       case "1" => {
         var imgUrl = ""
         var data: List[Map[String, String]] = List(Map())
-        views.html.topic_template.template_01(imgUrl, data)
+        //views.html.topic_template.template_01(imgUrl, data)
       }
-      case _ => views.html.index("")
+      //case _ => views.html.index("")
     }
-    Ok(view)
+    //Ok(view)
+    Ok("h5TopicModuleInstance")
   }
 
   def index = Action {
-    Ok("")
+    Ok("{}")
   }
 
   def login = Action { request =>
@@ -216,11 +217,13 @@ object Application extends Controller {
   }
 
   def main(name: String) = AuthAction { (request, _) =>
-    Ok(views.html.main(name))
+    //Ok(views.html.main(name))
+    Ok("main")
   }
 
   def account = AuthAction { (request, _) =>
-    Ok(views.html.account.account())
+    //Ok(views.html.account.account())
+    Ok("account")
   }
 
   def allAccount = AuthAction { (request, _) =>
@@ -481,7 +484,7 @@ object Application extends Controller {
     }
   }
 
-  val defaultImg = "/Users/yangguo/IdeaProjects/lazystoreproject/platform/lzbackup/data/dHJhaXQxNDMwMTE0NjIzMjk1.png"
+  val defaultImg = "/data/dHJhaXQxNDMwMTE0NjIzMjk1.png"
 
   def getImgElement(id: String) = AuthAction { (request, _) =>
     val sql = s"select system_path from objmetadata where id='${id.trim}'"
@@ -495,6 +498,7 @@ object Application extends Controller {
   }
 
   def getAppsTitleInfo = JsonpNoAuthAction { (request) =>
+    println(request.queryString)
     val requestParams = request.queryString.map { kv =>
       val key = kv._1
       val value = kv._2.toList match {
@@ -511,6 +515,28 @@ object Application extends Controller {
     SqlProvider.exec(sql)
   }
 
+  def getApppkgs = JsonpNoAuthAction { (request) =>
+    val sql = "SELECT * FROM apppkg order by publishdate desc LIMIT 0, 10"
+    SqlProvider.exec(sql)
+  }
+
+  def getApppkgInfoById = JsonpNoAuthAction { (request) =>
+    val appid = request.getQueryString("last_apppkg_id") match {
+      case Some(id) => {
+        val tid=id.trim
+        if(tid==""||tid.length<1) "-1"
+        else tid
+      }
+      case None => "-1"
+    }
+    val sql = s"SELECT * FROM apppkg where id=${appid}"
+    SqlProvider.exec(sql)
+  }
+
+  def getApps = JsonpNoAuthAction { (request) =>
+    val sql = "SELECT * FROM lazyapp a order by updateddate desc LIMIT 0, 10"
+    SqlProvider.exec(sql)
+  }
 
   private[this] lazy val default_columns_appids = "title,id"
 
