@@ -1,8 +1,8 @@
 package cn.changhong.lazystore.controller
 
 import cn.changhong.lazystore.service.ClientDeviceService
-import cn.changhong.web.router.RestAction
-import cn.changhong.web.util.{RestResponseInlineCode, RestException, ResponseContent, RestRequest}
+import cn.changhong.base.router.RestAction
+import cn.changhong.base.util.{RestRespCode, RestException, ResponseContent, RestRequest}
 import org.jboss.netty.handler.codec.http.HttpMethod
 
 /**

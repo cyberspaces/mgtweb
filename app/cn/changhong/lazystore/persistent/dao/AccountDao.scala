@@ -1,8 +1,8 @@
 package cn.changhong.lazystore.persistent.dao
 
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
 import cn.changhong.lazystore.persistent.T.Tables._
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestResponseInlineCode, RestException}
+import cn.changhong.base.util.{RestException, RestRespCode}
 
 import scala.slick.driver.MySQLDriver.simple._
 
@@ -24,7 +24,7 @@ object AdminAcountDao {
       try {
         (Lazyadmin returning Lazyadmin.map(_.id)).insert(admin)
       }catch{
-        case ex:Exception=>throw new RestException(RestResponseInlineCode.db_executor_error,s"db executor error,${ex.getMessage}")
+        case ex:Exception=>throw new RestException(RestRespCode.db_executor_error,s"db executor error,${ex.getMessage}")
       }
     }
   }

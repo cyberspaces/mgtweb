@@ -55,15 +55,15 @@ GET           /element/img/$id<[0-9]+>           controllers.Application.getImgE
 
 # APP推广管理
 
-POST          /admin/promoted/creation           controllers.PromoteAppModelApplication.createdPromotedWorkSheet
+POST          /admin/promoted/creation           controllers.PromoteApplication.createdPromotedWorkSheet
 
-POST          /admin/promoted/add/action         controllers.PromoteAppModelApplication.updatePromotedAction
+POST          /admin/promoted/add/action         controllers.PromoteApplication.updatePromotedAction
 
-GET           /admin/promoted/gets               controllers.PromoteAppModelApplication.pagingSearchPromotedApps
+GET           /admin/promoted/gets               controllers.PromoteApplication.pagingSearchPromotedApps
 
 # APP 管理
 
-GET           /admin/apps/category/gets          controllers.PromoteAppModelApplication.getCategory
+GET           /admin/apps/category/gets          controllers.PromoteApplication.getCategory
 
 GET           /admin/apps/gets                   controllers.Application.useIdsSearchInfo
 
@@ -95,11 +95,9 @@ GET           /stats/apps/getStatsAppsTraffic             controllers.AppsApplic
 GET           /stats/apps/getStatsAppsMemory             controllers.AppsApplication.getStatsAppsMemory
 
 # 上传 暂时禁用
-POST          /file/upload                       controllers.Application.uploadFile
 POST          /fileupload                        controllers.Application.uploadFile
 
 # ???
-# GET           /testbootstraptable                controllers.TestApplication.getData
 # GET           /jsonpdemo                         controllers.Application.jsonpDemo
 # GET           /test                              controllers.Application.testHtml(path="public/bootstraptable.html")
 # GET          /testTemplateModel1                controllers.Application.testTopicTemplateModule
@@ -107,25 +105,3 @@ POST          /fileupload                        controllers.Application.uploadF
 # 已禁用
 
 #GET         /getList                    controllers.Application.getList
-#
-#GET         /getdemo                    controllers.DefaultApp.indexs
-#
-#GET         /hello/:id/info             controllers.DefaultApp.hello(name:String,id:Long)
-#
-#GET         /goodjob/$id<[0-9]+>        controllers.DefaultApp.goodJob(name:String,id:Long)
-#
-#GET         /users                      controllers.DefaultApp.getUsers
-#
-#GET         /formDemo                   controllers.DefaultApp.formDemo
-#
-#POST        /formPost                   controllers.DefaultApp.formPost
-#
-#GET         /auth                       controllers.DefaultApp.auth
-#
-#GET         /apk/download/:id           controllers.DefaultApp.fileDownload(id)
-#
-#GET         /dd                         controllers.AccountController.login
-#
-#GET         /doAction                   controllers.AccountController.login
-#
-#GET        /test                       controllers.AccountController.test

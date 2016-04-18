@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.service
 
 import cn.changhong.lazystore.persistent.dao.Appsdao
-import cn.changhong.web.util._
+import cn.changhong.base.util._
 import com.twitter.util.{Await, Future}
 
 /**
@@ -24,7 +24,7 @@ private[service] class AppGetService extends BaseService {
     ResponseContent(try{
       Await.result(res1)
     }catch{
-      case ex:Throwable=>throw new RestException(RestResponseInlineCode.service_execution_timeout,s"db executor time out,${ex.getMessage}")
+      case ex:Throwable=>throw new RestException(RestRespCode.service_execution_timeout,s"db executor time out,${ex.getMessage}")
     })
   }
 }
@@ -76,7 +76,7 @@ private[service] class AppGetService extends BaseService {
       val appRequest = AppsRequest(request)
       val content = appRequest.condition match {
         case Some(s) => Appsdao.searchSpeityApps(appRequest)
-        case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters, "tag is null")
+        case None => throw new RestException(RestRespCode.invalid_request_parameters, "tag is null")
       }
       ResponseContent(content)
     }
@@ -92,7 +92,7 @@ private[service] class AppGetService extends BaseService {
       val appRequest = AppsRequest(request)
       val content = appRequest.condition match {
         case Some(s) => Appsdao.searchTopHotApps(appRequest)
-        case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters, "tag is null");
+        case None => throw new RestException(RestRespCode.invalid_request_parameters, "tag is null");
       }
       ResponseContent(content)
     }

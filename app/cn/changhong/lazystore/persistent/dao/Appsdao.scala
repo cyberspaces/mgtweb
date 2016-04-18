@@ -2,10 +2,10 @@ package cn.changhong.lazystore.persistent.dao
 
 import java.util.Date
 
-import cn.changhong.lazystore.persistent.T.Tables.{ApppkgRow, LazyappRow, Lazyapp,Apppkg}
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
+import cn.changhong.lazystore.persistent.T.Tables.{Apppkg, ApppkgRow, Lazyapp, LazyappRow}
 import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestResponseInlineCode, RestException}
+import cn.changhong.base.util.{RestException, RestRespCode}
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
@@ -62,13 +62,14 @@ object Appsdao {
   }
   /**
    * 查询推荐
+ *
    * @param request
    * @return
    */
   def searchSpeityApps(request: AppsRequest) ={
     val columns=request.columns match {
       case Some(s) => s"DISTINCT $c_lazystore_speitysort_index as sid,$s"
-      case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")// s"DISTINCT $c_lazystore_speitysort_index as sid,*"
+      case None => throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")// s"DISTINCT $c_lazystore_speitysort_index as sid,*"
     }
     val condition=request.condition match{
       case Some(s)=>s"$c_lazyapp_title like '%$s%'"
@@ -86,7 +87,7 @@ object Appsdao {
   def searchTopSaleApps(request: AppsRequest) = {
     val columns=request.columns match {
       case Some(s) => s"DISTINCT $c_lazystore_topsort_index as sid,$s"
-      case None =>  throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")//s"DISTINCT $c_lazystore_topsort_index as sid,*"
+      case None =>  throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")//s"DISTINCT $c_lazystore_topsort_index as sid,*"
     }
     val condition=request.condition match{
       case Some(s)=>s"$c_lazyapp_title like '%$s%'"
@@ -102,7 +103,7 @@ object Appsdao {
   def searchTopHotApps(request: AppsRequest) ={
     val columns=request.columns match {
       case Some(s) => s"DISTINCT $c_lazystore_topsort_index as sid,$s"
-      case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")//s"DISTINCT $c_lazystore_topsort_index as sid,*"
+      case None => throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")//s"DISTINCT $c_lazystore_topsort_index as sid,*"
     }
     val condition=request.condition match{
       case Some(s)=>s"$c_lazyapp_title like '%$s%'"
@@ -119,7 +120,7 @@ object Appsdao {
   def searchNewApps(request:AppsRequest)= {
     val columns=request.columns match{
       case Some(s)=>s"DISTINCT $c_lazyapp_updatedate as sid,$s"
-      case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")//case None=>s"DISTINCT $c_lazyapp_updatedate as sid,*"
+      case None => throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")//case None=>s"DISTINCT $c_lazyapp_updatedate as sid,*"
     }
     val condition=request.condition match{
       case Some(s)=>s"$c_lazyapp_title like '%$s%'"
@@ -136,11 +137,11 @@ object Appsdao {
   def searchSimilarApps(request:AppsRequest)={
     val columns=request.columns match {
       case Some(s) => s"$s,$c_lazystore_speitysort_index as sid"
-      case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")//case None => s"*,$c_lazystore_speitysort_index as sid"
+      case None => throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")//case None => s"*,$c_lazystore_speitysort_index as sid"
     }
     val condition=request.condition match{
       case Some(s)=>s"lazyapp_title like '$s'"
-      case None=> throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need App Name")
+      case None=> throw new RestException(RestRespCode.invalid_request_parameters,"Need App Name")
     }
     val sql=s"select $columns from $V_LAZYAPP_APPPKG_TAGS where $c_apptags_appcategories_name in (select $c_apptags_appcategories_name from $T_APPTAGS where $condition) and $c_lazystore_speitysort_index > ${request.start} order by $c_apptags_weight desc limit ${request.max}"
     exec(sql)
@@ -150,12 +151,12 @@ object Appsdao {
       case Some(s)=>
         val columns=request.columns match{
           case Some(c)=>s"DISTINCT $c_lazystore_speitysort_index as sid,$c"
-          case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need Columns Label")//case None=>s"DISTINCT $c_lazystore_speitysort_index as sid,*"
+          case None => throw new RestException(RestRespCode.invalid_request_parameters,"Need Columns Label")//case None=>s"DISTINCT $c_lazystore_speitysort_index as sid,*"
         }
         val where=s"$c_lazyapp_title like '%$s%' or $c_apptags_appcategories_name like '%$s%'"
         val sql=s"select $columns from $V_LAZYAPP_APPPKG_TAGS where $where and $c_lazystore_speitysort_index > ${request.start} limit ${request.max}"
         exec(sql)
-      case None=> throw new RestException(RestResponseInlineCode.invalid_request_parameters,"请输入需要查询的App")
+      case None=> throw new RestException(RestRespCode.invalid_request_parameters,"请输入需要查询的App")
     }
   }
   def insertApps(lazyApps:Seq[LazyappRow]) ={
@@ -164,7 +165,7 @@ object Appsdao {
         Lazyapp.insertAll(lazyApps: _*)
       }
     }catch{
-      case ex:Exception=>throw new RestException(RestResponseInlineCode.db_executor_error,s"db executor error,${ex.getMessage}")
+      case ex:Exception=>throw new RestException(RestRespCode.db_executor_error,s"db executor error,${ex.getMessage}")
     }
   }
   def insertAppPkgs(appPkgs:Seq[ApppkgRow])={
@@ -173,7 +174,7 @@ object Appsdao {
         Apppkg.insertAll(appPkgs:_*)
       }
     }catch{
-      case ex:Exception=>throw new RestException(RestResponseInlineCode.db_executor_error,s"db executor error,${ex.getMessage}")
+      case ex:Exception=>throw new RestException(RestRespCode.db_executor_error,s"db executor error,${ex.getMessage}")
     }
   }
   

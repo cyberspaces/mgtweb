@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.service
 
-import cn.changhong.web.init.GlobalConfigFactory
-import cn.changhong.web.util._
+import cn.changhong.lazystore.GlobalConfig
+import cn.changhong.base.util._
 import org.slf4j.LoggerFactory
 
 /**
@@ -11,7 +11,7 @@ trait BaseService{
   def apply(request:RestRequest):ResponseContent
 }
 trait LogService extends BaseService{
-  val log=LoggerFactory.getLogger(GlobalConfigFactory.log_user_name)
+  val log=LoggerFactory.getLogger(GlobalConfig.log_user_name)
   abstract override def apply(request:RestRequest):ResponseContent={
     log.info(createLog(request))
     super.apply(request)
@@ -22,7 +22,7 @@ trait LogService extends BaseService{
 }
 trait TempAuthCheckService extends BaseService{
   abstract override def apply(request:RestRequest):ResponseContent={
-    if(!checkTempAuth(request)) throw new RestException(RestResponseInlineCode.permission_need,"permission invalid")
+    if(!checkTempAuth(request)) throw new RestException(RestRespCode.permission_need,"permission invalid")
     super.apply(request)
   }
   def checkTempAuth(request:RestRequest):Boolean={

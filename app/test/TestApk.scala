@@ -1,7 +1,7 @@
 package test
 
 import cn.changhong.apk.ReadApkPackageInfo
-import cn.changhong.web.util.Parser
+import cn.changhong.base.util.Parser
 import com.google.gson.{GsonBuilder, Gson}
 
 /**

@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.persistent.dao
 
 import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.web.util.{RestResponseInlineCode, RestException}
+import cn.changhong.base.util.{RestRespCode, RestException}
 
 import SqlProvider._
 /**
@@ -24,7 +24,7 @@ object CategoryDao {
     }
     val sql = request.condition match {
       case Some(s) => s"select $columns from $T_APPCATEGORIES where $c_category_parent = '$parent' "
-      case None => throw new RestException(RestResponseInlineCode.invalid_request_parameters, "请输入类别")
+      case None => throw new RestException(RestRespCode.invalid_request_parameters, "请输入类别")
     }
     exec(sql)
   }

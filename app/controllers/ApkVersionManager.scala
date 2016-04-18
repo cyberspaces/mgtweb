@@ -2,10 +2,9 @@ package controllers
 
 import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
 import cn.changhong.lazystore.persistent.dao.{ObjMetadataDao, SqlProvider}
-import cn.changhong.web.util.{Parser, ResponseContent, BadResponseContent}
-import cn.changhong.lazystore.backup.AuthAction
-import cn.changhong.lazystore.controller.chfile.Util
-import play.api.mvc.{MultipartFormData, Controller}
+import cn.changhong.base.util.{BadResponseContent, Parser, ResponseContent}
+import cn.changhong.lazystore.controller.Util
+import play.api.mvc.{Controller, MultipartFormData}
 
 /**
  *  15-7-13.

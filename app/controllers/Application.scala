@@ -9,9 +9,8 @@ import cn.changhong.apk.ApkInfo
 import cn.changhong.apk.ReadApkPackageInfo
 import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
 import cn.changhong.lazystore.persistent.dao.{AdminAcountDao, AppTopicDao, ObjMetadataDao, SqlProvider}
-import cn.changhong.web.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}
-import cn.changhong.lazystore.backup.AuthAction
-import cn.changhong.lazystore.controller.chfile.Util
+import cn.changhong.base.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}
+import cn.changhong.lazystore.controller.Util
 import cn.changhong.lazystore.util.JavaObjToJsonString
 import org.apache.commons.lang.StringEscapeUtils
 import play.api.mvc._
@@ -30,7 +29,7 @@ object Application extends Controller {
 
     val res=_form match {
       case Some(tempForm)=>{
-        val form=PromoteAppModelApplication.defaultTransferFormBody(tempForm)
+        val form=PromoteApplication.defaultTransferFormBody(tempForm)
         def getValues(key:String)=form.getOrElse(key,"default")
         val apppkgColumns=List(
           "downloadurls",
@@ -216,7 +215,7 @@ object Application extends Controller {
     }
   }
 
-  def main(name: String) = AuthAction { (request, _) =>
+  def mainTest(name: String) = AuthAction { (request, _) =>
     //Ok(views.html.main(name))
     Ok("main")
   }

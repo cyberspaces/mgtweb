@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.service
 
 import cn.changhong.lazystore.persistent.dao.AppTopicDao
-import cn.changhong.web.util._
+import cn.changhong.base.util._
 import org.jboss.netty.handler.codec.http.HttpMethod
 
 /**
@@ -16,7 +16,7 @@ class AppTopicService extends BaseService{
       case HttpMethod.POST=>null
       case HttpMethod.PUT=>AppTopicDao.addAppTopic(request)
       case HttpMethod.DELETE=>null
-      case _=>throw new RestException(RestResponseInlineCode.no_such_method,"未找到此服务")
+      case _=>throw new RestException(RestRespCode.no_such_method,"未找到此服务")
     }
     ResponseContent(content)
   }

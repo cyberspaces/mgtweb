@@ -1,9 +1,9 @@
 package cn.changhong.lazystore.controller
 
 import cn.changhong.lazystore.service.{AddAppCommentService, GetAppCommentService}
-import cn.changhong.lazystore.util.{LazyStoreRequestType, Util}
-import cn.changhong.web.router.RestAction
-import cn.changhong.web.util.{RestResponseInlineCode, RestException, ResponseContent, RestRequest}
+import cn.changhong.lazystore.util.{LazyStoreRequestType}
+import cn.changhong.base.router.RestAction
+import cn.changhong.base.util.{RestRespCode, RestException, ResponseContent, RestRequest}
 import org.jboss.netty.handler.codec.http.HttpMethod
 
 /**

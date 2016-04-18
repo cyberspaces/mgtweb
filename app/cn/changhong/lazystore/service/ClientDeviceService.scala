@@ -4,7 +4,7 @@ import java.util.Date
 
 import cn.changhong.lazystore.persistent.T.Tables.UAppstatsRow
 import cn.changhong.lazystore.persistent.dao.ClientDeviceDao
-import cn.changhong.web.util.{Parser, ResponseContent, RestRequest}
+import cn.changhong.base.util.{Parser, ResponseContent, RestRequest}
 
 /**
  *  15-1-23.

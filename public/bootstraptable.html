@@ -67,11 +67,11 @@
         <!--</script>-->
     </div>
     <div class="container">
-        <form id="formid" action="http://10.9.52.31:8083/fileupload" enctype="multipart/form-data" method="post">
+        <form id="formid" action="/fileupload" enctype="multipart/form-data" method="post">
             <input type="file" name="pic">
             <input type="text" name="test_txt"/>
             <button id="submit_btn" type="submit" value="submit">submit</button>
-            <button id="submit_btn1" type="submit" value="submit" onclick="changeTarget('/file/upload1','#formid')">submit1</button>
+            <button id="submit_btn1" type="submit" value="submit" onclick="changeTarget('/fileupload','#formid')">submit1</button>
         </form>
     </div>
     <script>

@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.persistent.dao
 
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestException, RestResponseInlineCode}
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
+import cn.changhong.base.util.{RestException, RestRespCode}
 import org.apache.commons.lang.StringEscapeUtils
 
 import scala.slick.jdbc.{StaticQuery => Q}
@@ -23,7 +23,7 @@ object SqlProvider {
         sql"#$sql".as(SlickResultMap).list
       }
     }catch{
-      case ex : Throwable => throw new RestException(RestResponseInlineCode.db_executor_error, s"${ex.getMessage}")
+      case ex : Throwable => throw new RestException(RestRespCode.db_executor_error, s"${ex.getMessage}")
     }
   }
   def execTransaction(sqls:List[(Int,String)]) ={
@@ -36,7 +36,7 @@ object SqlProvider {
         }
       }
     }catch{
-      case ex : Throwable => throw new RestException(RestResponseInlineCode.db_executor_error, s"${ex.getMessage}")
+      case ex : Throwable => throw new RestException(RestRespCode.db_executor_error, s"${ex.getMessage}")
     }
 
   }
@@ -47,7 +47,7 @@ object SqlProvider {
         sql"#$sql".as(SlickResultInt).list
       }
     }catch{
-      case ex : Throwable => throw new RestException(RestResponseInlineCode.db_executor_error, s"${ex.getMessage}")
+      case ex : Throwable => throw new RestException(RestRespCode.db_executor_error, s"${ex.getMessage}")
     }
   }
   def exec2(sql:String)={
@@ -57,7 +57,7 @@ object SqlProvider {
         sql"#$sql".as(SlickResultString).list
       }
     }catch{
-      case ex : Throwable => throw new RestException(RestResponseInlineCode.db_executor_error, s"${ex.getMessage}")
+      case ex : Throwable => throw new RestException(RestRespCode.db_executor_error, s"${ex.getMessage}")
     }
   }
 }

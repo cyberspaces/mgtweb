@@ -1,6 +1,5 @@
 package controllers
 
-import cn.changhong.lazystore.backup.AuthAction
 import cn.changhong.lazystore.persistent.dao.SqlProvider
 import play.api.mvc._
 

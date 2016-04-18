@@ -2,8 +2,8 @@ package cn.changhong.lazystore.controller
 
 import cn.changhong.lazystore.service._
 import cn.changhong.lazystore.util.LazyStoreRequestType
-import cn.changhong.web.router.RestAction
-import cn.changhong.web.util.{RestResponseInlineCode, RestException, ResponseContent, RestRequest}
+import cn.changhong.base.router.RestAction
+import cn.changhong.base.util.{RestRespCode, RestException, ResponseContent, RestRequest}
 
 /**
  *  15-2-4.
@@ -22,7 +22,7 @@ object AppsQueryAction extends RestAction[RestRequest,ResponseContent]{
       case LazyStoreRequestType.New=>NewAppsService(request)
       case LazyStoreRequestType.similar=>SimilarAppsService(request)
       case LazyStoreRequestType.search=>SearchAppsService(request)
-      case s=>throw new RestException(RestResponseInlineCode.invalid_request_parameters,s"Invalid Apps Type [$s]")
+      case s=>throw new RestException(RestRespCode.invalid_request_parameters,s"Invalid Apps Type [$s]")
     }
   }
 }

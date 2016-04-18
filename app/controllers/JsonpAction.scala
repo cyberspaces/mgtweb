@@ -1,6 +1,6 @@
 package controllers
 
-import cn.changhong.web.util.{ResponseContent, TokenUtil, BadResponseContent, Parser}
+import cn.changhong.base.util.{ResponseContent, TokenUtil, BadResponseContent, Parser}
 import play.api.mvc._
 
 /**

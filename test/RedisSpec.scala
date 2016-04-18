@@ -2,7 +2,7 @@
   * Created by Administrator on 2016/3/25.
   */
 class RedisSpec{
-  def main(args:Array[String]): Unit ={
+  def mainTest(args:Array[String]): Unit ={
     val max_valid_request_frequency=10
     val max_valid_request_expire_seconds=10
     RedisPoolManager.redisCommand{implicit client=>

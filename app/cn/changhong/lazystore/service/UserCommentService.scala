@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.service
 
 import cn.changhong.lazystore.persistent.dao.UserCommentDao
-import cn.changhong.web.util._
+import cn.changhong.base.util._
 
 /**
  *  15-1-22.
@@ -27,7 +27,7 @@ import cn.changhong.web.util._
     override def apply(request: RestRequest): ResponseContent = {
       val content = AppsRequest(request).condition match {
         case Some(s) => UserCommentDao.getAppCommentStatsStar(s)
-        case None =>throw new RestException(RestResponseInlineCode.invalid_request_parameters,"Need App Id")
+        case None =>throw new RestException(RestRespCode.invalid_request_parameters,"Need App Id")
       }
       ResponseContent(content)
     }

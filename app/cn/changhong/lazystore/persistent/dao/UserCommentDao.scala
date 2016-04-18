@@ -1,16 +1,17 @@
 package cn.changhong.lazystore.persistent.dao
 
 import java.util.Date
+
 import cn.changhong.lazystore.persistent.T.Tables.UAppcommentsRow
 import cn.changhong.lazystore.persistent.T.Tables.UAppcomments
 import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestResponseInlineCode,  RestException}
+import cn.changhong.base.util.{RestException, RestRespCode}
 
 import scala.collection.mutable
 import scala.slick.jdbc.StaticQuery.interpolation
 import scala.slick.driver.MySQLDriver.simple._
 import SqlProvider._
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
 /**
  *  15-1-22.
  */
@@ -37,7 +38,7 @@ object UserCommentDao {
       try {
         (UAppcomments returning UAppcomments.map(_.id)).insert(comment)
       }catch{
-        case ex : Throwable=>throw new RestException(RestResponseInlineCode.db_insert_error,s"插入数据失败,ex=${ex.getMessage}")
+        case ex : Throwable=>throw new RestException(RestRespCode.db_insert_error,s"插入数据失败,ex=${ex.getMessage}")
       }
     }
   }
@@ -58,7 +59,7 @@ object UserCommentDao {
       }
       seq.mkString(",")
     } catch {
-      case ex : Throwable => RestException(RestResponseInlineCode.db_executor_error, s"db executor error,${ex.getMessage}")
+      case ex : Throwable => RestException(RestRespCode.db_executor_error, s"db executor error,${ex.getMessage}")
     }
   }
   def getAppComment(request:AppsRequest)={
@@ -69,7 +70,7 @@ object UserCommentDao {
     if(request.start <=0) request.start=new Date().getTime
     val apkid=request.condition match{
       case Some(id)=>id
-      case None=>throw new RestException(RestResponseInlineCode.invalid_request_parameters,"无效的id")
+      case None=>throw new RestException(RestRespCode.invalid_request_parameters,"无效的id")
     }
     val sql=s"select $columns from $T_UAPPCOMMENTS where $c_uappcomments_apppkg_id=$apkid and $c_uappcomments_commentDate < ${request.start} order by $c_uappcomments_commentDate desc limit ${request.max}"
     exec(sql)

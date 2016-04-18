@@ -1,8 +1,8 @@
 package cn.changhong.lazystore.controller
 
 import cn.changhong.lazystore.service.AppTopicService
-import cn.changhong.web.router.RestAction
-import cn.changhong.web.util.{ResponseContent, RestRequest}
+import cn.changhong.base.router.RestAction
+import cn.changhong.base.util.{ResponseContent, RestRequest}
 
 /**
  *  15-2-4.

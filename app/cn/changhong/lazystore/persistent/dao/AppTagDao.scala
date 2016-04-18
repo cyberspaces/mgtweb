@@ -1,9 +1,10 @@
 package cn.changhong.lazystore.persistent.dao
 
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
 import cn.changhong.lazystore.persistent.T.Tables.ApptagsRow
-import cn.changhong.web.persistent.SlickDBPoolManager
 import cn.changhong.lazystore.persistent.T.Tables.Apptags
-import cn.changhong.web.util.{RestResponseInlineCode, RestException}
+import cn.changhong.base.util.{RestException, RestRespCode}
+
 import scala.slick.driver.MySQLDriver.simple._
 
 /**
@@ -16,7 +17,7 @@ object AppTagDao {
         Apptags.insertAll(tags: _*)
       }
     }catch{
-      case ex:Throwable=>throw new RestException(RestResponseInlineCode.db_executor_error,s"db executor error,${ex.getMessage}")
+      case ex:Throwable=>throw new RestException(RestRespCode.db_executor_error,s"db executor error,${ex.getMessage}")
     }
   }
 }

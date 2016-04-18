@@ -1,17 +1,15 @@
 package cn.changhong.lazystore.persistent.dao
 
 import java.util.Date
-import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestResponseInlineCode, RestException, RestRequest, Parser}
 
+import cn.changhong.lazystore.service.AppsRequest
+import cn.changhong.base.util.{Parser, RestException, RestRequest, RestRespCode}
 import cn.changhong.lazystore.persistent.T.Tables._
 
 import scala.slick.driver.MySQLDriver.simple._
-
 import scala.slick.jdbc.StaticQuery.interpolation
-
 import SqlProvider._
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
 /**
  *  15-1-23.
  */
@@ -27,7 +25,7 @@ object AppTopicDao {
         (Lazytopic returning Lazytopic.map(_.location)).insert(bean)
       }
     }catch{
-      case ex:Exception=>throw new RestException(RestResponseInlineCode.db_executor_error,s"db executor error,${ex.getMessage}")
+      case ex:Exception=>throw new RestException(RestRespCode.db_executor_error,s"db executor error,${ex.getMessage}")
     }
   }
 

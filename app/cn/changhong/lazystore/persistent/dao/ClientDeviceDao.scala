@@ -2,9 +2,10 @@ package cn.changhong.lazystore.persistent.dao
 
 import java.util.Date
 
+import cn.changhong.lazystore.persistent.SlickDBPoolManager
 import cn.changhong.lazystore.util.KeyGenerator
-import cn.changhong.web.persistent.SlickDBPoolManager
-import cn.changhong.web.util.{RestResponseInlineCode, RestException, Parser, RestRequest}
+import cn.changhong.base.util.{Parser, RestException, RestRequest, RestRespCode}
+
 import scala.slick.driver.MySQLDriver.simple._
 import cn.changhong.lazystore.persistent.T.Tables._
 
@@ -26,7 +27,7 @@ object ClientDeviceDao {
         (UDevice returning UDevice.map(_.id)).insert(device)
       }
     } catch {
-      case ex: Exception => throw new RestException(RestResponseInlineCode.db_executor_error, s"db executor error,${ex.getMessage}")
+      case ex: Exception => throw new RestException(RestRespCode.db_executor_error, s"db executor error,${ex.getMessage}")
     }
   }
 
@@ -39,7 +40,7 @@ object ClientDeviceDao {
         case _=> 0
       }
     }catch {
-      case ex: Exception => throw new RestException(RestResponseInlineCode.db_executor_error, s"db executor error,${ex.getMessage}")
+      case ex: Exception => throw new RestException(RestRespCode.db_executor_error, s"db executor error,${ex.getMessage}")
 
     }
   }
@@ -59,7 +60,7 @@ object ClientDeviceDao {
         case _ => 0
       }
     } catch {
-      case ex: Exception => throw new RestException(RestResponseInlineCode.db_executor_error, s"db executor error,${ex.getMessage}")
+      case ex: Exception => throw new RestException(RestRespCode.db_executor_error, s"db executor error,${ex.getMessage}")
     }
   }
 
@@ -81,7 +82,7 @@ object ClientDeviceDao {
         case _ => 0
       }
     } catch {
-      case ex: Exception => throw new RestException(RestResponseInlineCode.db_executor_error, s"db executor error,${ex.getMessage}")
+      case ex: Exception => throw new RestException(RestRespCode.db_executor_error, s"db executor error,${ex.getMessage}")
     }
   }
 

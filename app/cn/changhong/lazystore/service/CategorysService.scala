@@ -1,7 +1,7 @@
 package cn.changhong.lazystore.service
 
 import cn.changhong.lazystore.persistent.dao.CategoryDao
-import cn.changhong.web.util.{ResponseContent, RestRequest}
+import cn.changhong.base.util.{ResponseContent, RestRequest}
 
 /**
  *  15-1-22.

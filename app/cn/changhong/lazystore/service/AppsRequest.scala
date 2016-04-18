@@ -1,8 +1,8 @@
 package cn.changhong.lazystore.service
 
-import cn.changhong.lazystore.util.Util
-import cn.changhong.web.init.GlobalConfigFactory
-import cn.changhong.web.util.{RestException, RestRequest, RestResponseInlineCode}
+import cn.changhong.lazystore.GlobalConfig
+import cn.changhong.lazystore.controller.Util
+import cn.changhong.base.util.{RestException, RestRequest, RestRespCode}
 
 /**
  *  15-1-22.
@@ -21,7 +21,7 @@ object AppsRequest {
         try {
           temp.get(0).toLong
         } catch {
-          case ex : Throwable => throw new RestException(RestResponseInlineCode.invalid_request_parameters, s"传入参数s=${temp.get(0)}不为数值类型")
+          case ex : Throwable => throw new RestException(RestRespCode.invalid_request_parameters, s"传入参数s=${temp.get(0)}不为数值类型")
         }
       } else Long.MaxValue
 
@@ -31,9 +31,9 @@ object AppsRequest {
         try {
           temp.get(0).toInt
         } catch {
-          case ex : Throwable => throw new RestException(RestResponseInlineCode.invalid_request_parameters, s"传入参数m=${temp.get(0)}不为数值类型")
+          case ex : Throwable => throw new RestException(RestRespCode.invalid_request_parameters, s"传入参数m=${temp.get(0)}不为数值类型")
         }
-      else GlobalConfigFactory.default_apps_count
+      else GlobalConfig.default_apps_count
 
     temp = request.urlParams.all.get(Util.request_key_params)
     val condition =
