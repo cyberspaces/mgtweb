@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.controller
+package backend.lazystore.controller
 
 import java.io.File
 import java.util.UUID

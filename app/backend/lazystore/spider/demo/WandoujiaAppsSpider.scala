@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.spider.demo
+package backend.lazystore.spider.demo
 
 import java.io._
 import java.net.{HttpURLConnection, URL}

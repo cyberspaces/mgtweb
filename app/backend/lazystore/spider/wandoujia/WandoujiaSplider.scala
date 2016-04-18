@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.spider.wandoujia
+package backend.lazystore.spider.wandoujia
 
 /**
  *  15-2-6.
@@ -6,7 +6,7 @@ package cn.changhong.lazystore.spider.wandoujia
 import java.io._
 import java.net.{HttpURLConnection, URL}
 import java.util.concurrent.{FutureTask, Callable, Future, Executors}
-import cn.changhong.lazystore.spider.demo.MongoStart
+import backend.lazystore.spider.demo.MongoStart
 import org.jsoup.Jsoup
 
 /**

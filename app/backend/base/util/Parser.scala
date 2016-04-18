@@ -1,16 +1,16 @@
-package cn.changhong.base.util
+package backend.base.util
 
 import java.nio.charset.Charset
 
-import cn.changhong.lazystore.persistent.T.Tables.UAppcommentsRow
-import cn.changhong.lazystore.persistent.dao.{DeviceApps, DeviceAppsStat}
-import cn.changhong.base.persistent.Tables.Tables.{FamilyMemberRow, UserRow}
+import backend.lazystore.persistent.T.Tables.UAppcommentsRow
+import backend.lazystore.persistent.dao.{DeviceApps, DeviceAppsStat}
+import backend.base.persistent.Tables.Tables.{FamilyMemberRow, UserRow}
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json._
 import net.liftweb.json.Extraction._
 import org.jboss.netty.buffer.{ChannelBuffers, ChannelBuffer}
 import org.jboss.netty.util.CharsetUtil
-import cn.changhong.lazystore.persistent.T.Tables._
+import backend.lazystore.persistent.T.Tables._
 
 /**
  *  14-12-9.

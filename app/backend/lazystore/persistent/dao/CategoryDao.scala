@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
-import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.base.util.{RestRespCode, RestException}
+import backend.lazystore.service.AppsRequest
+import backend.base.util.{RestRespCode, RestException}
 
 import SqlProvider._
 /**

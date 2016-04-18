@@ -1,5 +1,4 @@
-package cn.changhong.lazystore.persistent.dao
-
+package backend.lazystore.persistent.dao
 
 /**
  *  15-4-29.

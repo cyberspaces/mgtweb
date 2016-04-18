@@ -1,14 +1,14 @@
-package cn.changhong.base.controller.auth
+package backend.base.controller.auth
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.base.persistent.Tables.Tables.User
-import cn.changhong.base.router.{LogAopAction, RestAction, RestAopRouterProvider}
-import cn.changhong.base.util._
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.base.persistent.Tables.Tables.User
+import backend.base.router.{LogAopAction, RestAction, RestAopRouterProvider}
+import backend.base.util._
 import com.twitter.finagle.http.Response
 import org.jboss.netty.handler.codec.http.HttpMethod
 
 import scala.slick.driver.MySQLDriver.simple._
-import cn.changhong.base.persistent.Tables.Tables._
+import backend.base.persistent.Tables.Tables._
 /**
  *  14-12-8.
  */

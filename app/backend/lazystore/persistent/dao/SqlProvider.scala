@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.base.util.{RestException, RestRespCode}
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.base.util.{RestException, RestRespCode}
 import org.apache.commons.lang.StringEscapeUtils
 
 import scala.slick.jdbc.{StaticQuery => Q}

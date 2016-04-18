@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.spider.wandoujia
+package backend.lazystore.spider.wandoujia
 
 /**
  *  15-2-6.

@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
-import cn.changhong.lazystore.persistent.dao.UserCommentDao
-import cn.changhong.base.util._
+import backend.lazystore.persistent.dao.UserCommentDao
+import backend.base.util._
 
 /**
  *  15-1-22.

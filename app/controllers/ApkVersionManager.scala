@@ -1,9 +1,9 @@
 package controllers
 
-import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
-import cn.changhong.lazystore.persistent.dao.{ObjMetadataDao, SqlProvider}
-import cn.changhong.base.util.{BadResponseContent, Parser, ResponseContent}
-import cn.changhong.lazystore.controller.Util
+import backend.lazystore.persistent.T.Tables.ObjmetadataRow
+import backend.lazystore.persistent.dao.{ObjMetadataDao, SqlProvider}
+import backend.base.util.{BadResponseContent, Parser, ResponseContent}
+import backend.lazystore.controller.Util
 import play.api.mvc.{Controller, MultipartFormData}
 
 /**

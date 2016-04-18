@@ -5,13 +5,13 @@ import java.io.File
 import java.text.{DateFormat, SimpleDateFormat}
 import java.util.concurrent.atomic.AtomicLong
 
-import cn.changhong.apk.ApkInfo
-import cn.changhong.apk.ReadApkPackageInfo
-import cn.changhong.lazystore.persistent.T.Tables.ObjmetadataRow
-import cn.changhong.lazystore.persistent.dao.{AdminAcountDao, AppTopicDao, ObjMetadataDao, SqlProvider}
-import cn.changhong.base.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}
-import cn.changhong.lazystore.controller.Util
-import cn.changhong.lazystore.util.JavaObjToJsonString
+import backend.apk.ApkInfo
+import backend.apk.ReadApkPackageInfo
+import backend.lazystore.persistent.T.Tables.ObjmetadataRow
+import backend.lazystore.persistent.dao.{AdminAcountDao, AppTopicDao, ObjMetadataDao, SqlProvider}
+import backend.base.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}
+import backend.lazystore.controller.Util
+import backend.lazystore.util.JavaObjToJsonString
 import org.apache.commons.lang.StringEscapeUtils
 import play.api.mvc._
 

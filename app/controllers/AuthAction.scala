@@ -3,7 +3,7 @@ package controllers
 /**
  *  15-4-13.
  */
-import cn.changhong.base.util.{BadResponseContent, Parser, TokenUtil}
+import backend.base.util.{BadResponseContent, Parser, TokenUtil}
 // Redirect(routes.Application.index()) , don't remove.
 import play.api.mvc.{Request, Result, _}
 

@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
-import cn.changhong.lazystore.GlobalConfig
-import cn.changhong.base.util._
+import backend.lazystore.GlobalConfig
+import backend.base.util._
 import org.slf4j.LoggerFactory
 
 /**

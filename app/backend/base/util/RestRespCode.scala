@@ -1,4 +1,4 @@
-package cn.changhong.base.util
+package backend.base.util
 
 /**
  *  14-12-9.

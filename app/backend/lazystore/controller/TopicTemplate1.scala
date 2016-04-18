@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.controller
+package backend.lazystore.controller
 
 /**
  *  15-4-15.

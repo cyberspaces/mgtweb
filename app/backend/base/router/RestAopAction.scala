@@ -1,7 +1,7 @@
-package cn.changhong.base.router
+package backend.base.router
 
-import cn.changhong.base.util.Parser.ObjectToJsonStringToChannelBuffer
-import cn.changhong.base.util._
+import backend.base.util.Parser.ObjectToJsonStringToChannelBuffer
+import backend.base.util._
 import com.twitter.finagle.http.Response
 import org.jboss.netty.handler.codec.http.{HttpResponse}
 import org.slf4j.LoggerFactory

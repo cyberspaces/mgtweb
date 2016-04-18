@@ -1,4 +1,4 @@
-package cn.changhong.base.router
+package backend.base.router
 
 /**
  * 判断是否存在爬虫->异常捕捉->设置日志->设置超时->前端路由器
@@ -7,11 +7,11 @@ package cn.changhong.base.router
 import java.util.UUID
 import java.util.concurrent.Executors
 
-import cn.changhong.lazystore.GlobalConfig
-import cn.changhong.lazystore.controller.Util
-import cn.changhong.base.controller.ForeFamilyMemberAction
-import cn.changhong.base.controller.auth.ForeAuthAction
-import cn.changhong.base.util._
+import backend.lazystore.GlobalConfig
+import backend.lazystore.controller.Util
+import backend.base.controller.ForeFamilyMemberAction
+import backend.base.controller.auth.ForeAuthAction
+import backend.base.util._
 import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finagle.{Service, SimpleFilter}
 import com.twitter.util._

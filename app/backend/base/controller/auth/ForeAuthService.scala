@@ -1,8 +1,8 @@
-package cn.changhong.base.controller.auth
+package backend.base.controller.auth
 
-import cn.changhong.base.router.RestAction
+import backend.base.router.RestAction
 import com.twitter.finagle.http.Response
-import cn.changhong.base.util._
+import backend.base.util._
 
 /**
  *  14-12-8.

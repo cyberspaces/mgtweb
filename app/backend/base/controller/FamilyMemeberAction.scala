@@ -1,12 +1,12 @@
-package cn.changhong.base.controller
+package backend.base.controller
 
 import java.nio.charset.Charset
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.base.persistent.Tables.Tables.{FamilyMember, FamilyMemberRow, User, UserRow}
-import cn.changhong.base.router.{AuthAopAction, LogAopAction, RestAopAction, RestAopRouterProvider}
-import cn.changhong.base.util.Parser.{FamilyMemberParser, ObjectToJsonString}
-import cn.changhong.base.util._
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.base.persistent.Tables.Tables.{FamilyMember, FamilyMemberRow, User, UserRow}
+import backend.base.router.{AuthAopAction, LogAopAction, RestAopAction, RestAopRouterProvider}
+import backend.base.util.Parser.{FamilyMemberParser, ObjectToJsonString}
+import backend.base.util._
 import com.twitter.finagle.http.{Request, Response}
 import org.jboss.netty.handler.codec.http.{DefaultHttpRequest, HttpMethod, HttpVersion, QueryStringDecoder}
 

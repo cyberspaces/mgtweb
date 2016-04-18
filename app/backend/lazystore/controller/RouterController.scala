@@ -1,8 +1,7 @@
-package cn.changhong.lazystore.controller
+package backend.lazystore.controller
 
-
-import cn.changhong.base.router.RestAction
-import cn.changhong.base.util.{ResponseContent, RestRequest}
+import backend.base.router.RestAction
+import backend.base.util.{ResponseContent, RestRequest}
 import com.twitter.finagle.http.Request
 import org.jboss.netty.handler.codec.http.HttpMethod
 

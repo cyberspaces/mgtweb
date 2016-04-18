@@ -1,8 +1,8 @@
 package controllers.stats
 
-import cn.changhong.lazystore.persistent.RedisPoolManager
-import cn.changhong.lazystore.persistent.dao.SqlProvider
-import cn.changhong.base.util.{Parser, ResponseContent}
+import backend.lazystore.persistent.RedisPoolManager
+import backend.lazystore.persistent.dao.SqlProvider
+import backend.base.util.{Parser, ResponseContent}
 import controllers.JsonpAction
 import play.api.mvc.Controller
 

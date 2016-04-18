@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
 import scala.slick.jdbc.{PositionedResult, GetResult}
 

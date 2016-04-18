@@ -1,11 +1,11 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
 import java.util.Date
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.lazystore.persistent.T.Tables.{Apppkg, ApppkgRow, Lazyapp, LazyappRow}
-import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.base.util.{RestException, RestRespCode}
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.lazystore.persistent.T.Tables.{Apppkg, ApppkgRow, Lazyapp, LazyappRow}
+import backend.lazystore.service.AppsRequest
+import backend.base.util.{RestException, RestRespCode}
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source

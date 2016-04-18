@@ -1,8 +1,8 @@
-package cn.changhong.lazystore.controller
+package backend.lazystore.controller
 
-import cn.changhong.lazystore.service.AppTopicService
-import cn.changhong.base.router.RestAction
-import cn.changhong.base.util.{ResponseContent, RestRequest}
+import backend.lazystore.service.AppTopicService
+import backend.base.router.RestAction
+import backend.base.util.{ResponseContent, RestRequest}
 
 /**
  *  15-2-4.

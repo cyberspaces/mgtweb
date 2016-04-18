@@ -2,9 +2,9 @@ package controllers
 
 import java.text.SimpleDateFormat
 
-import cn.changhong.lazystore.persistent.dao.SqlProvider
-import cn.changhong.base.util.{PagingResponseContent, ResponseContent, Parser, BadResponseContent}
-import cn.changhong.lazystore.persistent.dao.PromotedAppDao
+import backend.lazystore.persistent.dao.SqlProvider
+import backend.base.util.{PagingResponseContent, ResponseContent, Parser, BadResponseContent}
+import backend.lazystore.persistent.dao.PromotedAppDao
 import play.api.mvc._
 
 /**

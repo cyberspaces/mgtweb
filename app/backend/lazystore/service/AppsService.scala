@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
-import cn.changhong.lazystore.persistent.dao.Appsdao
-import cn.changhong.base.util._
+import backend.lazystore.persistent.dao.Appsdao
+import backend.base.util._
 import com.twitter.util.{Await, Future}
 
 /**

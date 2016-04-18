@@ -1,13 +1,13 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
 import java.util.Date
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.lazystore.util.KeyGenerator
-import cn.changhong.base.util.{Parser, RestException, RestRequest, RestRespCode}
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.lazystore.util.KeyGenerator
+import backend.base.util.{Parser, RestException, RestRequest, RestRespCode}
 
 import scala.slick.driver.MySQLDriver.simple._
-import cn.changhong.lazystore.persistent.T.Tables._
+import backend.lazystore.persistent.T.Tables._
 
 /**
  *  15-1-23.

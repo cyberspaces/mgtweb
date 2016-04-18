@@ -1,10 +1,10 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
 import java.util.Date
 
-import cn.changhong.lazystore.persistent.T.Tables.UAppstatsRow
-import cn.changhong.lazystore.persistent.dao.ClientDeviceDao
-import cn.changhong.base.util.{Parser, ResponseContent, RestRequest}
+import backend.lazystore.persistent.T.Tables.UAppstatsRow
+import backend.lazystore.persistent.dao.ClientDeviceDao
+import backend.base.util.{Parser, ResponseContent, RestRequest}
 
 /**
  *  15-1-23.

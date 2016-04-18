@@ -1,7 +1,7 @@
-package cn.changhong.base.controller.auth
+package backend.base.controller.auth
 
-import cn.changhong.base.router.RestAction
-import cn.changhong.base.util.RestRequest
+import backend.base.router.RestAction
+import backend.base.util.RestRequest
 import com.twitter.finagle.http.Response
 import com.twitter.util.Future
 

@@ -1,4 +1,5 @@
-package cn.changhong.lazystore.persistent.T
+package backend.lazystore.persistent.T
+
 // AUTO-GENERATED Slick data model
 
 

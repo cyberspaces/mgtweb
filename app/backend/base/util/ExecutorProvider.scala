@@ -1,8 +1,8 @@
-package cn.changhong.base.util
+package backend.base.util
 
 import java.util.concurrent.Executors
 
-import cn.changhong.lazystore.GlobalConfig
+import backend.lazystore.GlobalConfig
 import com.twitter.util.FuturePool
 
 /**

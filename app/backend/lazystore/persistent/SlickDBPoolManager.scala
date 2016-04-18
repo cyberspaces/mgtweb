@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.persistent
+package backend.lazystore.persistent
 
 import org.apache.commons.dbcp.BasicDataSource
 

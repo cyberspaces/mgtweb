@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.util
+package backend.lazystore.util
 
 /**
  *  15-1-19.

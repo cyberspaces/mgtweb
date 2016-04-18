@@ -1,9 +1,9 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.lazystore.persistent.T.Tables.{Objmetadata, ObjmetadataRow}
-import cn.changhong.lazystore.persistent.dao.SqlProvider._
-import cn.changhong.base.util.{RestException, RestRespCode}
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.lazystore.persistent.T.Tables.{Objmetadata, ObjmetadataRow}
+import backend.lazystore.persistent.dao.SqlProvider._
+import backend.base.util.{RestException, RestRespCode}
 
 import scala.slick.driver.MySQLDriver.simple._
 

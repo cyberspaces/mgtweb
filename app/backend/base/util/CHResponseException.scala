@@ -1,4 +1,4 @@
-package cn.changhong.base.util
+package backend.base.util
 
 import com.twitter.finagle.http.Response
 import com.twitter.util.Future

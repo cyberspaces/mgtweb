@@ -1,7 +1,7 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
-import cn.changhong.lazystore.persistent.dao.CategoryDao
-import cn.changhong.base.util.{ResponseContent, RestRequest}
+import backend.lazystore.persistent.dao.CategoryDao
+import backend.base.util.{ResponseContent, RestRequest}
 
 /**
  *  15-1-22.

@@ -1,6 +1,6 @@
-package cn.changhong.lazystore.persistent
+package backend.lazystore.persistent
 
-import cn.changhong.lazystore.GlobalConfig
+import backend.lazystore.GlobalConfig
 import redis.clients.jedis.{Jedis, JedisPool, JedisPoolConfig}
 
 /**

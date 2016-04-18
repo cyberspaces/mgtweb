@@ -1,9 +1,9 @@
-package cn.changhong.base.util
+package backend.base.util
 
 import java.util.UUID
 
-import cn.changhong.lazystore.GlobalConfig
-import cn.changhong.lazystore.persistent.RedisPoolManager
+import backend.lazystore.GlobalConfig
+import backend.lazystore.persistent.RedisPoolManager
 import com.twitter.finagle.http.Request
 import org.slf4j.LoggerFactory
 

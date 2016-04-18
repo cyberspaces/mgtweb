@@ -1,17 +1,17 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
 import java.util.Date
 
-import cn.changhong.lazystore.persistent.T.Tables.UAppcommentsRow
-import cn.changhong.lazystore.persistent.T.Tables.UAppcomments
-import cn.changhong.lazystore.service.AppsRequest
-import cn.changhong.base.util.{RestException, RestRespCode}
+import backend.lazystore.persistent.T.Tables.UAppcommentsRow
+import backend.lazystore.persistent.T.Tables.UAppcomments
+import backend.lazystore.service.AppsRequest
+import backend.base.util.{RestException, RestRespCode}
 
 import scala.collection.mutable
 import scala.slick.jdbc.StaticQuery.interpolation
 import scala.slick.driver.MySQLDriver.simple._
 import SqlProvider._
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
+import backend.lazystore.persistent.SlickDBPoolManager
 /**
  *  15-1-22.
  */

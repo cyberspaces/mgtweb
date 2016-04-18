@@ -1,12 +1,12 @@
-package cn.changhong.lazystore.persistent.dao
+package backend.lazystore.persistent.dao
 
 /**
  *  15-2-10.
  */
 
-import cn.changhong.lazystore.persistent.SlickDBPoolManager
-import cn.changhong.lazystore.persistent.T.Tables.{Appdev, AppdevRow}
-import cn.changhong.base.util.{RestException, RestRespCode}
+import backend.lazystore.persistent.SlickDBPoolManager
+import backend.lazystore.persistent.T.Tables.{Appdev, AppdevRow}
+import backend.base.util.{RestException, RestRespCode}
 
 import scala.slick.driver.MySQLDriver.simple._
 object AppDeveloperDao{

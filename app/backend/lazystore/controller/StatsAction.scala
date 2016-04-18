@@ -1,9 +1,9 @@
-package cn.changhong.lazystore.controller
+package backend.lazystore.controller
 
-import cn.changhong.lazystore.persistent.T.Tables.UAppstatsRow
-import cn.changhong.lazystore.service.ClientDeviceService
-import cn.changhong.base.router.RestAction
-import cn.changhong.base.util.{RestRespCode, RestException, ResponseContent, RestRequest}
+import backend.lazystore.persistent.T.Tables.UAppstatsRow
+import backend.lazystore.service.ClientDeviceService
+import backend.base.router.RestAction
+import backend.base.util.{RestRespCode, RestException, ResponseContent, RestRequest}
 import org.jboss.netty.handler.codec.http.HttpMethod
 
 /**

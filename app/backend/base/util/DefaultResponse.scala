@@ -1,4 +1,4 @@
-package cn.changhong.base.util
+package backend.base.util
 
 import java.nio.charset.Charset
 

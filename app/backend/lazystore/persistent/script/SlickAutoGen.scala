@@ -1,4 +1,4 @@
-package cn.changhong.lazystore.persistent.script
+package backend.lazystore.persistent.script
 
 import scala.slick.codegen.SourceCodeGenerator
 

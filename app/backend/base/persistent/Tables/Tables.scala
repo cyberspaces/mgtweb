@@ -1,4 +1,4 @@
-package cn.changhong.base.persistent.Tables
+package backend.base.persistent.Tables
 
 import java.util.Date
 

@@ -1,8 +1,8 @@
-package cn.changhong.lazystore.service
+package backend.lazystore.service
 
-import cn.changhong.lazystore.GlobalConfig
-import cn.changhong.lazystore.controller.Util
-import cn.changhong.base.util.{RestException, RestRequest, RestRespCode}
+import backend.lazystore.GlobalConfig
+import backend.lazystore.controller.Util
+import backend.base.util.{RestException, RestRequest, RestRespCode}
 
 /**
  *  15-1-22.

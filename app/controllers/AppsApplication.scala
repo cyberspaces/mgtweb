@@ -1,6 +1,6 @@
 package controllers
 
-import cn.changhong.lazystore.persistent.dao.SqlProvider
+import backend.lazystore.persistent.dao.SqlProvider
 import play.api.mvc._
 
 /**
