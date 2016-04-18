@@ -5,8 +5,8 @@ import java.io.File
 import java.text.{DateFormat, SimpleDateFormat}
 import java.util.concurrent.atomic.AtomicLong
 
-import backend.apk.ApkInfo
-import backend.apk.ReadApkPackageInfo
+import cn.changhong.apk.ApkInfo
+import cn.changhong.apk.ReadApkPackageInfo
 import backend.lazystore.persistent.T.Tables.ObjmetadataRow
 import backend.lazystore.persistent.dao.{AdminAcountDao, AppTopicDao, ObjMetadataDao, SqlProvider}
 import backend.base.util.{BadResponseContent, Parser, ResponseContent, TokenUtil}

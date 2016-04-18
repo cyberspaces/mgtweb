@@ -1,6 +1,6 @@
 package test
 
-import backend.apk.ReadApkPackageInfo
+import cn.changhong.apk.ReadApkPackageInfo
 import backend.base.util.Parser
 import com.google.gson.{GsonBuilder, Gson}
 
